@@ -1,0 +1,26 @@
+Now let's get into the implementation part.
+Technology used:
+- Google API
+- Firebase (Database and Server)
+- Android (XML and java)
+Google API
+Google APIs is a set of application programming interfaces (APIs) developed by Google which allow communication with Google Services and their integration to other services. Third-party apps can use these APIs to take advantage of or extend the functionality of the existing services. 
+We use Google API in the following way
+Mapping location : We make  use of the maps service provided by Google API to keep track of the location of shops. There are client libraries in various languages which allow us to use Google APIs from within their code.
+Firebase  (Database and Server)
+Advantages:  Firebase provides a real-time database and back-end as a service. The service provides application developers an API that allows application data to be synchronized across clients and stored on Firebase's cloud. The company provides client libraries that enable integration with Android, JavaScript, Java. With the help of libraries we can easily make use of the Firebase database.
+
+Android (XML and java)
+An Android app is made up of two parts: the front end and the back end. The front end is the visual part of the app that the user interacts with, and the back end, which contains all the code that drives the app.The front end is written using XML. it is very similar to HTML. There is at least one XML layout file for each activity (or several if you are supporting multiple device sizes), as well as layout files for custom views. We can even use java in the frontend. The back end is written in Java. You can use the Java standard library in addition to the Android libraryThis gives us access to a ton of pre-made objects, and the APIs are thoroughly documented online by Oracle and Google.
+
+Why Android?
+Most of the shopkeepers use Android based smart phones, if they use a smart phone (around >95%).
+
+Why firebase?
+
+When you have a short development time it would be best to go with firebase. Firebase helps in creating a prototype in a very short period. It helps to cut down the development time and avoids messing with servers and data storage to a great extent.
+Queries with limited sorting and filtering functionality can be performed with the firebase database. Cloud firestore assures automatic scaling and can handle 1 million concurrent connections and 10,000 writes/second. If your application’s scalability and concurrency level fall within this category, you can opt for the cloud firestore.
+When your applications require a minimal level of integration with legacy systems or third-party services, firebase will be the right choice. Firebase also becomes an ideal choice when your application does not require heavy data processing or any form of complex user authentication requirements.
+Firebase is a good choice if you plan to either write a brand-new application or rewrite an existing one from scratch. Additionally, firebase helps in the easy storing and retrieval of dynamic content. If you decide to develop the application without any form of custom coding the backend, firebase makes this easy. For example, the chat app or a video conferencing application where the backend is not required in managing the things.
+ 
+Extended Feature: With the help of google API we can use multiple languages.
