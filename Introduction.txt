@@ -1,0 +1,10 @@
+Introduction
+In this tough time where all of us are quarantined and struggling to get day-to-day household supplies. Here our team came up with an idea of designing an app where it gives information about nearby stores. When we need to buy some groceries but we are unaware of their availability in shops, we are not even aware of the availability of shops. In such a case we need to check each and every store until we find the product. Quarantine is all about maintaining distance and staying at home, It's not advisable to check all the stories manually. How does our application help in such cases? Our application will give the information of the availability of the store and availability of the products(sticking to the day to day needs basically). It will be simple for the user just to go through the application and check for availability of the shop and availability of things.
+How will we make the information available in the application?
+It's a very simple few step process. Shopkeepers should first register into the app and list the availability of the products. This will let us know the availability of the shop and also products. 
+How to get rid of fake stores?
+Here users can upvote/downvote the store.
+How to update the list of items available?
+As we don't mention the quantity available, once the item gets completed the shopkeeper removes it from the list and once the stock comes the shopkeeper updates the list.
+Here we may get a question:  why does the shopkeeper keep making efforts  to use and maintain the app?
+Making the available products visible to customers there is an increase in the sales. It also helps people in tough times.
