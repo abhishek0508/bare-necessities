@@ -23,5 +23,5 @@ The users will input open times, close times and the type of shop (Supermarket, 
 Whenever somebody wants to get something, they will search for their item of need (rice, vegetables, medicines etc.). Based on what type of store it is (supermarkets stock groceries, toiletries; petrol stations will have diesel, petrol; etc.) the application will give a list of all open, nearby places based on a radius.  
 
  
-![activity diagram](shopSearch.png)
+![activity diagram](https://github.com/abhishek0508/SE-Project/blob/master/DesignDoc/shopSearch.png)
 <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Activity diagram 
