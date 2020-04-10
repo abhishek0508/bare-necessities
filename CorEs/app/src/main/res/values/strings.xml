@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">corEs</string>
+    <string name="app_name">SEproject</string>
+    <string name="locationView">Select shop location</string>
+    <string name="retailerName">Enter your name</string>
+    <string name="shopName">Enter your shop\'s name</string>
+    <string name="phoneNum">Enter your phone number</string>
+    <string name="shopType">Select shop type</string>
+    <string name="saveButton">Save</string>
 </resources>
