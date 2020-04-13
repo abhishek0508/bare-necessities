@@ -1,4 +1,3 @@
-//package com.example.se.cores;
 package com.se.cores;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,14 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class RetailerAccount extends AppCompatActivity {
+public class CustomerRegistration extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.retailer_account);
+        setContentView(R.layout.activity_customer_registration);
 
-        Button saveButton = findViewById(R.id.saveButtonRA);
+        Button saveButton = findViewById(R.id.saveButtonCR);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -24,7 +23,7 @@ public class RetailerAccount extends AppCompatActivity {
 
                 // Go to app home screen
 
-                Intent home = new Intent(RetailerAccount.this, );  // go to screen 4 + 6 (home, retailer logged in)
+                Intent home = new Intent(CustomerRegistration.this, );  // go to screen 4 + 5 (home, customer logged in)
                 startActivity(home);
             }
         });

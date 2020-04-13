@@ -6,4 +6,7 @@
     <string name="phoneNum">Enter your phone number</string>
     <string name="shopType">Select shop type</string>
     <string name="saveButton">Save</string>
+    <string name="shopOpenTime">Select shop opening time</string>
+    <string name="shopCloseTime">Select shop closing time</string>
+    <string name="GSTnum">Enter shop GST number (if available)</string>
 </resources>

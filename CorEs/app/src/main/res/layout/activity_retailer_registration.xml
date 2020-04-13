@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RetailerAccount">
+    tools:context=".RetailerRegistration">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -37,8 +37,8 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-           <ImageView
-                android:id="@+id/imageView"
+            <ImageView
+                android:id="@+id/imageViewShop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"
@@ -74,7 +74,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="431dp"
+                android:layout_height="817dp"
                 android:orientation="vertical"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -83,7 +83,7 @@
                 tools:layout_editor_absoluteY="288dp">
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/editTextRetailerName"
                     android:layout_width="match_parent"
                     android:layout_height="62dp"
                     android:layout_margin="15dp"
@@ -94,7 +94,7 @@
                     tools:layout_editor_absoluteY="310dp" />
 
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/editTextShopName"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_margin="15dp"
@@ -105,12 +105,23 @@
                     tools:layout_editor_absoluteY="396dp" />
 
                 <EditText
-                    android:id="@+id/editText3"
+                    android:id="@+id/editTextRetailerPhone"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_margin="15dp"
                     android:ems="10"
                     android:hint="@string/phoneNum"
+                    android:inputType="phone"
+                    tools:layout_editor_absoluteX="55dp"
+                    tools:layout_editor_absoluteY="476dp" />
+
+                <EditText
+                    android:id="@+id/editTextGSTNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_margin="15dp"
+                    android:ems="10"
+                    android:hint="@string/GSTnum"
                     android:inputType="phone"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="476dp" />
@@ -126,13 +137,50 @@
                     tools:layout_editor_absoluteX="21dp" />
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/spinnerShopType"
                     android:layout_width="match_parent"
                     android:layout_height="69dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginBottom="15dp"
                     tools:layout_editor_absoluteX="111dp"
                     tools:layout_editor_absoluteY="102dp" />
+
+                <TextView
+                    android:id="@+id/textViewShopOpen"
+                    android:layout_width="259dp"
+                    android:layout_height="37dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/shopOpenTime"
+                    android:textSize="20dp"
+                    tools:layout_editor_absoluteX="21dp" />
+
+                <TimePicker
+                    android:id="@+id/shopOpenTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:id="@+id/textViewShopClose"
+                    android:layout_width="259dp"
+                    android:layout_height="37dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/shopCloseTime"
+                    android:textSize="20dp"
+                    tools:layout_editor_absoluteX="21dp" />
+
+                <TimePicker
+                    android:id="@+id/shopCloseTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp" />
+
 
             </LinearLayout>
 
@@ -148,7 +196,7 @@
 
 
             <com.google.android.gms.maps.MapView
-                android:id="@+id/mapView"
+                android:id="@+id/mapShopLocationReg"
                 android:layout_width="match_parent"
                 android:layout_height="166dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -163,7 +211,7 @@
                 android:layout_marginTop="40dp">
 
                 <Button
-                    android:id="@+id/saveButtonRA"
+                    android:id="@+id/saveButtonRR"
                     android:layout_width="127dp"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -174,5 +222,6 @@
         </LinearLayout>
 
     </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
