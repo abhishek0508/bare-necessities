@@ -1,3 +1,4 @@
+//package com.example.seproject;
 package com.se.cores;
 
 import androidx.appcompat.app.AppCompatActivity;
