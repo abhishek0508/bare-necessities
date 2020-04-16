@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RetailerRegistration">
-
+    <!--
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarRetailerReg"
         android:layout_width="match_parent"
         android:layout_height="114dp"
         android:background="?attr/colorPrimary"
@@ -16,17 +16,18 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    -->
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="614dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.017">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,50 +38,16 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/imageViewShop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageButton
+                android:id="@+id/imageRetailerReg"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginBottom="10dp"
-                tools:layout_editor_absoluteX="56dp"
-                tools:layout_editor_absoluteY="159dp"
-                tools:src="@tools:sample/avatars" />
+                android:layout_marginRight="60dp"
+                android:layout_marginBottom="20dp"
+                android:src="@mipmap/shop_img_default_foreground"/>
 
-            <!--
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="159dp" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="287dp" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="186dp" />
-
-            -->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="817dp"
-                android:orientation="vertical"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageView"
-                tools:layout_editor_absoluteX="4dp"
-                tools:layout_editor_absoluteY="288dp">
 
                 <EditText
                     android:id="@+id/editTextRetailerName"
@@ -103,6 +70,28 @@
                     android:inputType="textPersonName"
                     tools:layout_editor_absoluteX="53dp"
                     tools:layout_editor_absoluteY="396dp" />
+
+                <EditText
+                    android:id="@+id/emailRetailerReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_margin="15dp"
+                    android:ems="10"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="310dp" />
+
+                <EditText
+                    android:id="@+id/passwordRetailerReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_margin="15dp"
+                    android:ems="10"
+                    android:hint="@string/passwordCreate"
+                    android:inputType="textPassword"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="310dp" />
 
                 <EditText
                     android:id="@+id/editTextRetailerPhone"
@@ -130,10 +119,10 @@
                     android:id="@+id/textViewShopType"
                     android:layout_width="206dp"
                     android:layout_height="37dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
                     android:text="@string/shopType"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     tools:layout_editor_absoluteX="21dp" />
 
                 <Spinner
@@ -141,6 +130,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="69dp"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:layout_marginBottom="15dp"
                     tools:layout_editor_absoluteX="111dp"
                     tools:layout_editor_absoluteY="102dp" />
@@ -155,13 +145,14 @@
                     android:textSize="20dp"
                     tools:layout_editor_absoluteX="21dp" />
 
-                <TimePicker
-                    android:id="@+id/shopOpenTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp" />
+            <TimePicker
+                android:id="@+id/shopOpenTime"
+                android:timePickerMode="spinner"
+                android:layout_width="match_parent"
+                android:layout_height="98dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp" />
 
                 <TextView
                     android:id="@+id/textViewShopClose"
@@ -175,14 +166,12 @@
 
                 <TimePicker
                     android:id="@+id/shopCloseTime"
+                    android:timePickerMode="spinner"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp" />
-
-
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView"
@@ -198,8 +187,8 @@
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapShopLocationReg"
                 android:layout_width="match_parent"
-                android:layout_height="166dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="20dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 tools:layout_editor_absoluteX="6dp"
@@ -207,9 +196,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp">
-
+                android:layout_height="wrap_content">
                 <Button
                     android:id="@+id/saveButtonRR"
                     android:layout_width="127dp"

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import androidx.appcompat.widget.Toolbar;
 
 public class RetailerAccount extends AppCompatActivity {
 
@@ -24,7 +25,7 @@ public class RetailerAccount extends AppCompatActivity {
 
                 // Go to app home screen
 
-                Intent home = new Intent(RetailerAccount.this, );  // go to screen 4 + 6 (home, retailer logged in)
+                Intent home = new Intent(RetailerAccount.this, RetailerAccount.class);  // go to screen 4 + 6 (home, retailer logged in)
                 startActivity(home);
             }
         });

@@ -32,8 +32,8 @@
         app:layout_constraintVertical_bias="1.0">
 
 
-        <ImageView
-            android:id="@+id/imageView"
+        <ImageButton
+            android:id="@+id/imageCustomerReg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="56dp"
@@ -51,6 +51,28 @@
             android:hint="@string/retailerName"
             android:layout_marginTop="20dp"
             android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="53dp"
+            tools:layout_editor_absoluteY="310dp" />
+
+        <EditText
+            android:id="@+id/emailCustomerReg"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_margin="15dp"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            tools:layout_editor_absoluteX="53dp"
+            tools:layout_editor_absoluteY="310dp" />
+
+        <EditText
+            android:id="@+id/passwordCustomerReg"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_margin="15dp"
+            android:ems="10"
+            android:hint="@string/passwordCreate"
+            android:inputType="textPassword"
             tools:layout_editor_absoluteX="53dp"
             tools:layout_editor_absoluteY="310dp" />
 
