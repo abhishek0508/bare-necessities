@@ -9,4 +9,6 @@
     <string name="shopOpenTime">Select shop opening time</string>
     <string name="shopCloseTime">Select shop closing time</string>
     <string name="GSTnum">Enter shop GST number (if available)</string>
+    <string name="email">Enter your email id</string>
+    <string name="passwordCreate">Create a password</string>
 </resources>

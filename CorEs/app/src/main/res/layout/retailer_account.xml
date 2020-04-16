@@ -37,8 +37,8 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-           <ImageView
-                android:id="@+id/imageView"
+           <ImageButton
+                android:id="@+id/imageRetailerAcc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"
@@ -74,11 +74,11 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="431dp"
+                android:layout_height="683dp"
                 android:orientation="vertical"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageView"
+                app:layout_constraintTop_toBottomOf="@id/imageRetailerAcc"
                 tools:layout_editor_absoluteX="4dp"
                 tools:layout_editor_absoluteY="288dp">
 
@@ -105,12 +105,45 @@
                     tools:layout_editor_absoluteY="396dp" />
 
                 <EditText
+                    android:id="@+id/emailRetailerAcc"
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_margin="15dp"
+                    android:ems="10"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="310dp" />
+
+                <EditText
+                    android:id="@+id/passwordRetailerAcc"
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_margin="15dp"
+                    android:ems="10"
+                    android:hint="@string/passwordCreate"
+                    android:inputType="textPassword"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="310dp" />
+
+                <EditText
                     android:id="@+id/editText3"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_margin="15dp"
                     android:ems="10"
                     android:hint="@string/phoneNum"
+                    android:inputType="phone"
+                    tools:layout_editor_absoluteX="55dp"
+                    tools:layout_editor_absoluteY="476dp" />
+
+                <EditText
+                    android:id="@+id/editTextGSTNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_margin="15dp"
+                    android:ems="10"
+                    android:hint="@string/GSTnum"
                     android:inputType="phone"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="476dp" />
