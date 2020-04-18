@@ -23,7 +23,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TimePicker;
-//import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -51,16 +50,20 @@ public class RetailerRegistration extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
+    private int nextUserID;
+    private int nextShopID;
+
     ImageButton shopImage;
     MapView shopLocation;
     GoogleMap gMap;
+
+    Bitmap uploadedShopImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retailer_registration);
 
-//        Toolbar retailerRegistration = findViewById(R.id.toolbarRetailerReg);
         shopImage = findViewById(R.id.imageRetailerReg);
         shopLocation = findViewById(R.id.mapShopLocationReg);
         final EditText retailerNameField = findViewById(R.id.editTextRetailerName);
@@ -75,7 +78,6 @@ public class RetailerRegistration extends AppCompatActivity {
         final LatLng[] shopCoords = new LatLng[1];
         final Button saveButton = findViewById(R.id.saveButtonRR);
 
-//        retailerRegistration.setSubtitle("Retailer Registration");
 
         // ----------------------------- Storing the user's choice for the shop type spinner --------------------------------------------
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -104,7 +106,7 @@ public class RetailerRegistration extends AppCompatActivity {
 
         // -------------------------------------------- To let the user upload an image -------------------------------------------------
 
-        requestMultiplePermissions();   // Or maybe call this elsewhere?
+        requestMultiplePermissions();
 
         shopImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -218,6 +220,15 @@ public class RetailerRegistration extends AppCompatActivity {
 
                 // Add all data to DB
 
+                User newUser = new UserBuilder().setName(retailerName)
+                                                .setEmail(email)
+                                                .setPassword(password)
+                                                .setPhoneNumber(phoneNumber)
+                                                .build();
+
+                DatabaseAdapter db = new DatabaseAdapter();
+                db.addNewUser(newUser);
+
                 // Go to app home screen
 
                 Intent home = new Intent(RetailerRegistration.this, RetailerRegistration.class);  // go to screen 4 + 6 (home, retailer logged in)
@@ -240,8 +251,8 @@ public class RetailerRegistration extends AppCompatActivity {
             if (data != null) {
                 Uri contentURI = data.getData();
                 try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
-                    shopImage.setImageBitmap(bitmap);
+                    uploadedShopImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
+                    shopImage.setImageBitmap(uploadedShopImage);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -249,7 +260,6 @@ public class RetailerRegistration extends AppCompatActivity {
         }
     }
 
-    // TODO: Where do you call this method?
     private void requestMultiplePermissions() {
           Dexter.withActivity(this)
                 .withPermissions(
@@ -257,10 +267,7 @@ public class RetailerRegistration extends AppCompatActivity {
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        // check if all permissions are granted
-                        if (report.areAllPermissionsGranted()) {
-                         //  Toast.makeText(getApplicationContext(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
-                        }
+                        report.areAllPermissionsGranted();
                     }
 
                     @Override
