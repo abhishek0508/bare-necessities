@@ -15,8 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ShopList"></activity>
         <activity android:name=".CustomerRegistration" />
-        <activity android:name=".RetailerRegistration"/>
+        <activity android:name=".RetailerRegistration" />
         <activity android:name=".Shop" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -28,7 +29,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDhmJDYGneQLcWw5YMVmcjUzl1P_IFRDnQ"/>
+            android:value="AIzaSyDhmJDYGneQLcWw5YMVmcjUzl1P_IFRDnQ" />
     </application>
 
 </manifest>
