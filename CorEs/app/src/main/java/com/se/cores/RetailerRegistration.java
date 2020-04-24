@@ -1,6 +1,7 @@
 package com.se.cores;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -42,7 +43,11 @@ import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class RetailerRegistration extends AppCompatActivity {
 
@@ -220,14 +225,23 @@ public class RetailerRegistration extends AppCompatActivity {
 
                 // Add all data to DB
 
-                User newUser = new UserBuilder().setName(retailerName)
-                                                .setEmail(email)
-                                                .setPassword(password)
-                                                .setPhoneNumber(phoneNumber)
+                Retailer newRetailer = new RetailerBuilder().setName(retailerName)
+                                                            .setEmail(email)
+                                                            .setPassword(password)
+                                                            .setPhoneNumber(phoneNumber)
+                                                            .build();
+
+                Map<String, Boolean> shopTypeMap = new HashMap<String, Boolean>();
+                shopTypeMap.put(shopType, Boolean.TRUE);
+
+                Shop newShop = new ShopBuilder().setShopName(shopName)
+                                                .setGstNumber(GSTnum)
+                                                .setShopType(shopTypeMap)
                                                 .build();
 
                 DatabaseAdapter db = new DatabaseAdapter();
-                db.addNewUser(newUser);
+                db.addNewRetailer(newRetailer);
+                db.addNewShop(newShop);
 
                 // Go to app home screen
 
