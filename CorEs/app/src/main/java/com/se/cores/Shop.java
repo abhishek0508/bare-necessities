@@ -5,12 +5,13 @@ import com.google.firebase.firestore.CollectionReference;
 import com.koalap.geofirestore.GeoFire;
 import com.koalap.geofirestore.GeoLocation;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Date;
 import java.util.Map;
 
 //
-public class Shop {
+public class Shop implements Serializable {
     private String shopName;
     private FeedBack feedBack;
     private String gstNumber;
@@ -21,6 +22,7 @@ public class Shop {
     private Date closeTime;
     private boolean openCloseStatus;
     private Map<String,Boolean> shopType;
+    private String image_url;
 
     public String getShopName() {
         return shopName;
@@ -112,5 +114,20 @@ public class Shop {
 
     public void setShopType(Map<String, Boolean> shopType) {
         this.shopType = shopType;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
+
+    public Shop(String shopName, Date openTime, Date closeTime, String image_url) {
+        this.shopName = shopName;
+        this.openTime = openTime;
+        this.closeTime = closeTime;
+        this.image_url = image_url;
     }
 }

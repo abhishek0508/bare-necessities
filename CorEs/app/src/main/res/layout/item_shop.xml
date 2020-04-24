@@ -1,51 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
     <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="4dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/shopName"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/shopName"
-                android:layout_margin="16dp"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="142dp"
+                android:layout_marginTop="11dp"
+                android:text="@string/shopName" />
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_margin="16dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="8dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintTop_toBottomOf="@id/shopName"
                 app:srcCompat="@drawable/ic_launcher_background" />
 
             <TextView
-                android:id="@+id/GetDetails"
-                android:layout_width="match_parent"
+                android:id="@+id/shopOpenTime"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/shopName"
-                android:layout_margin="16dp"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-        </LinearLayout>
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="43dp"
+                android:layout_marginEnd="96dp"
+                android:text="@string/shopOpenTime" />
 
-    </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/shopCloseTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="72dp"
+                android:layout_marginEnd="100dp"
+                android:text="@string/shopCloseTime" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="104dp"
+                android:layout_marginEnd="164dp"
+                android:text="Click for More" />
+
+        </RelativeLayout>
+</androidx.cardview.widget.CardView>
