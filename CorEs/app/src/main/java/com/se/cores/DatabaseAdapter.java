@@ -28,7 +28,6 @@ class DatabaseAdapter {
 
     void addNewShop(Shop shop) {
 
-
         Log.d("DatabaseAdapter", "New shop added");
     }
 

@@ -7,11 +7,12 @@ import com.google.firebase.firestore.CollectionReference;
 import com.koalap.geofirestore.GeoFire;
 import com.koalap.geofirestore.GeoLocation;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Date;
 import java.util.Map;
 
-public class Shop {
+public class Shop implements Serializable {
 
     private String shopName;
     private FeedBack feedBack;
