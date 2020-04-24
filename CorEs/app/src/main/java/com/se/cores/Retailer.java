@@ -6,73 +6,93 @@ package com.se.cores;
 public class Retailer {
 
     private final String image_url;
-    private final String firstName;
-    private final String lastName;
+    private final String name;
     private final String phoneNumber;
+    private final String email;
+    private final String password;
 
-    private Retailer(RetailerBuilder builder){
+    Retailer(RetailerBuilder builder){
         this.image_url = builder.image_url;
-        this.firstName = builder.firstName;
+        this.name = builder.name;
         this.phoneNumber = builder.phoneNumber;
-        this.lastName = builder.lastName;
+        this.email = builder.email;
+        this.password = builder.password;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getImage_url() {
         return image_url;
     }
 
-    public String getName() {
-        return firstName+""+lastName;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     @Override
     public String toString() {
         return "Retailer{" +
                 "image_url='" + image_url + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", Name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
+}
 
-    public static class RetailerBuilder
-    {
-        private final String firstName;
-        private final String lastName;
-        private String image_url;
-        private String phoneNumber;
+class RetailerBuilder {
+    String name;
+    String phoneNumber;
+    String email;
+    String password;
+    String image_url;
 
-        public RetailerBuilder(String firstName, String lastName) {
-            this.firstName = firstName;
-            this.lastName = lastName;
-        }
+    public RetailerBuilder() {}
 
-        public RetailerBuilder imageUrl(String image_url){
-            this.image_url = image_url;
-            return this;
-        }
-
-        public RetailerBuilder phoneNumber(String phoneNumber){
-            this.phoneNumber = phoneNumber;
-            return this;
-        }
-
-        public Retailer build() {
-            Retailer retailer =  new Retailer(this);
-            validateUserObject(retailer);
-            return retailer;
-        }
-
-        private void validateUserObject(Retailer retailer) {
-            //Do some basic validations to check
-            //if user object does not break any assumption of system
-        }
+    RetailerBuilder setName(String name) {
+        this.name = name;
+        return this;
     }
 
+    public RetailerBuilder imageUrl(String image_url){
+        this.image_url = image_url;
+        return this;
+    }
+
+    RetailerBuilder setPhoneNumber(String phone) {
+        this.phoneNumber = phone;
+        return this;
+    }
+
+    RetailerBuilder setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    RetailerBuilder setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public Retailer build() {
+        Retailer retailer = new Retailer(this);
+        validateUserObject(retailer);
+        return retailer;
+    }
+
+    private void validateUserObject(Retailer retailer) {
+        //Do some basic validations to check
+        //if user object does not break any assumption of system
+    }
 }
 
 //  sample code for creation retailer instance
