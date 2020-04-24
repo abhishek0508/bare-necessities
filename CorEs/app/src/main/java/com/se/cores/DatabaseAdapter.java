@@ -6,8 +6,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-class DatabaseAdapter {
+import java.util.ArrayList;
+import java.util.List;
 
+class DatabaseAdapter {
+    DatabaseReference rootNodeReference;
     FirebaseFirestore db;
 
     DatabaseAdapter() {
@@ -19,7 +22,12 @@ class DatabaseAdapter {
     void addNewCustomer(Customer customer) {
 //                rootNodeReference.child("shops")
         Log.d("DatabaseAdapter", "New user added");
+    }
 
+
+    List<Shop> getShops(){
+        List<Shop> shops = new ArrayList<Shop>();
+        return shops;
     }
 
     void addNewRetailer(Retailer retailer) {

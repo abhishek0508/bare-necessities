@@ -1,22 +1,80 @@
-//package com.se.cores;
-//
-//import androidx.recyclerview.widget.RecyclerView;
-//
-//public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
-//    public static class ViewHolder extends RecyclerView.ViewHolder {}
-//    public ViewHolder(View v) {
-//        super(v);
-//        // Define click listener for the ViewHolder's View.
-//        v.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
-//            }
-//        });
-//        textView = (TextView) v.findViewById(R.id.textView);
-//    }
-//
-//    public TextView getTextView() {
-//        return textView;
-//    }
-//}
+package com.se.cores;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
+import java.util.ArrayList;
+
+public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder> {
+    private ArrayList<Shop> dataset;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener{
+        void onItemClick(int position, View v);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
+
+    public static class ShopViewHolder extends RecyclerView.ViewHolder {
+
+        TextView textViewShopName;
+        TextView textViewOpenTime;
+        TextView textViewCloseTime;
+        ImageView imageViewIcon;
+
+        public ShopViewHolder(View itemView, final OnItemClickListener listener) {
+            super(itemView);
+            this.textViewShopName = (TextView) itemView.findViewById(R.id.shopName);
+            this.textViewOpenTime = (TextView) itemView.findViewById(R.id.shopOpenTime);
+            this.textViewCloseTime = (TextView) itemView.findViewById(R.id.shopCloseTime);
+            this.imageViewIcon = (ImageView) itemView.findViewById(R.id.imageView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener!=null){
+                        int position = getAdapterPosition();
+                        if(position!=RecyclerView.NO_POSITION){
+                            listener.onItemClick(position,v);
+                        }
+                    }
+                }
+            });
+        }
+    }
+    public ShopAdapter(ArrayList<Shop> data) {
+        this.dataset = data;
+    }
+
+
+    @Override
+    public ShopViewHolder onCreateViewHolder(ViewGroup parent,
+                                           int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_shop, parent, false);
+        ShopViewHolder shopViewHolder = new ShopViewHolder(view,mListener);
+        return shopViewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(final ShopViewHolder holder, final int listPosition) {
+
+        Shop shop = dataset.get(listPosition);
+        holder.textViewCloseTime.setText((CharSequence) shop.getCloseTime());
+        holder.textViewOpenTime.setText((CharSequence) shop.getOpenTime());
+        holder.textViewShopName.setText(shop.getShopName());
+        Glide.with(holder.imageViewIcon).load(shop.getImage_url()).into(holder.imageViewIcon);
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return dataset.size();
+    }
+}
