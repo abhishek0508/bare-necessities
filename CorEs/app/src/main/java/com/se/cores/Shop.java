@@ -110,14 +110,6 @@ class ShopBuilder {
 
     public ShopBuilder() {}
 
-    // why do we have this parametrized constructor? -- For ShopDataDummy
-    public ShopBuilder(String shopName, String openTime, String closeTime, String image_url) {
-        this.shopName = shopName;
-        this.openTime = openTime;
-        this.closeTime = closeTime;
-        this.image_url = image_url;
-    }
-
     public ShopBuilder setShopName(String shopName) {
         this.shopName = shopName;
         return this;
