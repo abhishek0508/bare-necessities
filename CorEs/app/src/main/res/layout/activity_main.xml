@@ -31,6 +31,15 @@
             tools:layout_editor_absoluteX="107dp"
             tools:layout_editor_absoluteY="193dp" />
 
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Retailer reg test button"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="193dp" />
+
     </LinearLayout>
 
 

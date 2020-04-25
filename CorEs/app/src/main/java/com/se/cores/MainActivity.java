@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
+    private Button button,button4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +27,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent retReg = new Intent(MainActivity.this, RetailerRegistration.class);
+                startActivity(retReg);
+            }
+        });
+
+        button4=findViewById(R.id.button4);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent retReg = new Intent(MainActivity.this, RegisterSignIn.class);
                 startActivity(retReg);
             }
         });
