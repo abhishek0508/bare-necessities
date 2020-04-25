@@ -106,8 +106,17 @@ class ShopBuilder {
     String closeTime;
     boolean openCloseStatus;
     Map<String,Boolean> shopType;
+    String image_url;
 
     public ShopBuilder() {}
+
+    // why do we have this parametrized constructor?
+    public ShopBuilder(String shopName, String openTime, String closeTime, String image_url) {
+        this.shopName = shopName;
+        this.openTime = openTime;
+        this.closeTime = closeTime;
+        this.image_url = image_url;
+    }
 
     public ShopBuilder setShopName(String shopName) {
         this.shopName = shopName;
@@ -199,13 +208,6 @@ class ShopBuilder {
     }
 
     public void setImage_url(String image_url) {
-        this.image_url = image_url;
-    }
-
-    public Shop(String shopName, Date openTime, Date closeTime, String image_url) {
-        this.shopName = shopName;
-        this.openTime = openTime;
-        this.closeTime = closeTime;
         this.image_url = image_url;
     }
 }

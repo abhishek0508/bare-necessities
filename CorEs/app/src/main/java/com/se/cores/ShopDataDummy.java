@@ -17,8 +17,8 @@ public class ShopDataDummy {
 
     static String[] shopName = {"Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread", "Honeycomb", "Ice Cream Sandwich","JellyBean", "Kitkat", "Lollipop", "Marshmallow"};
     static String[] image_url = {"adfdfd","adfdfd","adfdfd","adfdfd"};
-    static Date[] openTime = {};
-    static Date[] closeTime = {};
+    static String[] openTime = {};
+    static String[] closeTime = {};
 
 
 }

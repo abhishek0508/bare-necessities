@@ -34,14 +34,14 @@ public class ShopList extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         data = new ArrayList<Shop>();
-        for (int i = 0; i < ShopDataDummy.shopName.length; i++) {
-            data.add(new Shop(
-                    ShopDataDummy.shopName[i],
-                    ShopDataDummy.openTime[i],
-                    ShopDataDummy.closeTime[i],
-                    ShopDataDummy.image_url[i]
-            ));
-        }
+//        for (int i = 0; i < ShopDataDummy.shopName.length; i++) {
+//            data.add(new ShopBuilder(
+//                    ShopDataDummy.shopName[i],
+//                    ShopDataDummy.openTime[i],
+//                    ShopDataDummy.closeTime[i],
+//                    ShopDataDummy.image_url[i]
+//            ));
+//        }
 
         adapter = new ShopAdapter(data);
         recyclerView.setAdapter(adapter);
