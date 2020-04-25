@@ -170,6 +170,9 @@ public class RetailerRegistration extends AppCompatActivity {
 
                             gMap.setMinZoomPreference(12);
 
+                            shopCoords[0] = new LatLng(location.getLatitude(),
+                                                       location.getLongitude());
+
                             CircleOptions circleOptions = new CircleOptions();
                             circleOptions.center(new LatLng(location.getLatitude(),
                                     location.getLongitude()));
@@ -186,15 +189,12 @@ public class RetailerRegistration extends AppCompatActivity {
 
         if(gMap != null)
         {
-            gMap.setOnPoiClickListener(new GoogleMap.OnPoiClickListener() {
-                @Override
-                public void onPoiClick(PointOfInterest pointOfInterest) {
-                    MarkerOptions markerOptions = new MarkerOptions();
-                    markerOptions.position(pointOfInterest.latLng);
-                    gMap.addMarker(markerOptions);
-                    gMap.moveCamera(CameraUpdateFactory.newLatLng(pointOfInterest.latLng));
-                    shopCoords[0] = pointOfInterest.latLng;
-                }
+            gMap.setOnPoiClickListener(pointOfInterest -> {
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(pointOfInterest.latLng);
+                gMap.addMarker(markerOptions);
+                gMap.moveCamera(CameraUpdateFactory.newLatLng(pointOfInterest.latLng));
+                shopCoords[0] = pointOfInterest.latLng;
             });
         }
 
@@ -241,13 +241,13 @@ public class RetailerRegistration extends AppCompatActivity {
                                                 .build();
 
                 DatabaseAdapter db = new DatabaseAdapter();
-                db.addNewRetailer(newRetailer);
+//                db.addNewRetailer(newRetailer);
                 db.addNewShop(newShop);
 
                 // Go to app home screen
 
-                Intent home = new Intent(RetailerRegistration.this, RetailerRegistration.class);  // go to screen 4 + 6 (home, retailer logged in)
-                startActivity(home);
+//                Intent home = new Intent(RetailerRegistration.this, RetailerRegistration.class);  // go to screen 4 + 6 (home, retailer logged in)
+//                startActivity(home);
             }
         });
     }

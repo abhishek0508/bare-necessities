@@ -111,7 +111,7 @@
                     android:layout_margin="15dp"
                     android:ems="10"
                     android:hint="@string/GSTnum"
-                    android:inputType="phone"
+                    android:inputType="text"
                     tools:layout_editor_absoluteX="55dp"
                     tools:layout_editor_absoluteY="476dp" />
 
