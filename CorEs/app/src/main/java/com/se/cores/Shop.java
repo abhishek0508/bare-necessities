@@ -2,12 +2,10 @@ package com.se.cores;
 
 import androidx.annotation.NonNull;
 
-//import com.koalap.geofirestore.GeoFire;
-//import com.koalap.geofirestore.GeoLocation;
+import com.koalap.geofirestore.GeoFire;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Date;
 import java.util.Map;
 
 public class Shop implements Serializable {
@@ -16,7 +14,7 @@ public class Shop implements Serializable {
     private FeedBack feedBack;
     private String gstNumber;
     private List<String> itemUnavailable;
-//    private GeoFire geoFire;
+//    GeoFire geoFire;
     private double locationLat;
     private double locationLong;
     private Retailer retailerId;
@@ -61,7 +59,6 @@ public class Shop implements Serializable {
 //        return geoFire;
 //    }
 
-
     public double getLocationLat() {
         return locationLat;
     }
@@ -90,6 +87,9 @@ public class Shop implements Serializable {
         return shopType;
     }
 
+    public String getImage_url() {
+        return image_url;
+    }
 }
 
 class ShopBuilder {
@@ -110,7 +110,7 @@ class ShopBuilder {
 
     public ShopBuilder() {}
 
-    // why do we have this parametrized constructor?
+    // why do we have this parametrized constructor? -- For ShopDataDummy
     public ShopBuilder(String shopName, String openTime, String closeTime, String image_url) {
         this.shopName = shopName;
         this.openTime = openTime;
@@ -137,25 +137,6 @@ class ShopBuilder {
         this.itemUnavailable = itemUnavailable;
         return this;
     }
-
-//    public ShopBuilder setGeoFire(CollectionReference ref, double latitude, double longitude) {
-//        geoFire = new GeoFire(ref);
-//        geoFire.setLocation("firebase-hq", new GeoLocation(latitude, -longitude),
-//                new GeoFire.CompletionListener() {
-//                    FirebaseError error;
-//                    @Override
-//                    public void onComplete(String key, Exception exception) {
-//                        if (error != null) {
-//                            System.err.println("There was an error saving the location to GeoFire: " + exception.toString());
-//                        } else {
-//                            System.out.println("Location saved on server successfully!");
-//                        }
-//                    }
-//                });
-//
-//        return this;
-//    }
-
 
     public ShopBuilder setLocationLat(double locationLat) {
         this.locationLat = locationLat;
@@ -192,6 +173,11 @@ class ShopBuilder {
         return this;
     }
 
+    public ShopBuilder setImage_url(String image_url) {
+        this.image_url = image_url;
+        return this;
+    }
+
     public Shop build() {
         Shop shop = new Shop(this);
         validateUserObject(shop);
@@ -201,10 +187,5 @@ class ShopBuilder {
     private void validateUserObject(Shop shop) {
         //Do some basic validations to check
         //if user object does not break any assumption of system
-    }
-
-    public ShopBuilder setImage_url(String image_url) {
-        this.image_url = image_url;
-        return this;
     }
 }
