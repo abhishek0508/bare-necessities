@@ -106,6 +106,7 @@ class ShopBuilder {
     String closeTime;
     boolean openCloseStatus;
     Map<String,Boolean> shopType;
+    String image_url;
 
     public ShopBuilder() {}
 
@@ -194,15 +195,12 @@ class ShopBuilder {
         //if user object does not break any assumption of system
     }
 
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public void setImage_url(String image_url) {
+    public ShopBuilder setImage_url(String image_url) {
         this.image_url = image_url;
+        return this;
     }
 
-    public Shop(String shopName, Date openTime, Date closeTime, String image_url) {
+    public ShopBuilder(String shopName, String openTime, String closeTime, String image_url) {
         this.shopName = shopName;
         this.openTime = openTime;
         this.closeTime = closeTime;
