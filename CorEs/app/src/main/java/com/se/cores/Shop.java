@@ -5,11 +5,12 @@ import androidx.annotation.NonNull;
 //import com.koalap.geofirestore.GeoFire;
 //import com.koalap.geofirestore.GeoLocation;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Date;
 import java.util.Map;
 
-public class Shop {
+public class Shop implements Serializable {
 
     private String shopName;
     private FeedBack feedBack;
@@ -23,6 +24,7 @@ public class Shop {
     private String closeTime;
     private boolean openCloseStatus;
     private Map<String,Boolean> shopType;
+    private String image_url;
 
     Shop(@NonNull ShopBuilder builder) {
         this.shopName = builder.shopName;
@@ -190,5 +192,20 @@ class ShopBuilder {
     private void validateUserObject(Shop shop) {
         //Do some basic validations to check
         //if user object does not break any assumption of system
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
+
+    public Shop(String shopName, Date openTime, Date closeTime, String image_url) {
+        this.shopName = shopName;
+        this.openTime = openTime;
+        this.closeTime = closeTime;
+        this.image_url = image_url;
     }
 }

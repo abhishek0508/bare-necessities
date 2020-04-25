@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void  openShop(){
+    private void  openShop(){
         Intent intent = new Intent(this, Shop.class);
         startActivity(intent);
     }

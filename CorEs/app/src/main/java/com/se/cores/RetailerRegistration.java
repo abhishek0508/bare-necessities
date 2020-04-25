@@ -59,7 +59,6 @@ public class RetailerRegistration extends AppCompatActivity {
     ImageButton shopImage;
     MapView shopLocation;
     GoogleMap gMap;
-
     Bitmap uploadedShopImage;
 
     @Override
@@ -178,8 +177,8 @@ public class RetailerRegistration extends AppCompatActivity {
                             circleOptions.radius(200);
                             circleOptions.fillColor(Color.BLUE);
                             circleOptions.strokeWidth(6);
-
                             gMap.addCircle(circleOptions);
+
                         }
                     };
 
