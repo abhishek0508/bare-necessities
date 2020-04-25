@@ -3,7 +3,6 @@ package com.se.cores;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 //        The DataModel is used to retrieve the data for
 //        each CardView through getters. The Shop class
 //        holds the arrays of textviews and drawables along with their ids.
-
 
 public class ShopList extends AppCompatActivity {
 
@@ -33,20 +31,19 @@ public class ShopList extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 
-        data = new ArrayList<Shop>();
+        data = new ArrayList<>();
         for (int i = 0; i < ShopDataDummy.shopName.length; i++) {
-            data.add(new Shop(
-                    ShopDataDummy.shopName[i],
-                    ShopDataDummy.openTime[i],
-                    ShopDataDummy.closeTime[i],
-                    ShopDataDummy.image_url[i]
-            ));
+            data.add(new ShopBuilder().setShopName(ShopDataDummy.shopName[i])
+                            .setCloseTime(ShopDataDummy.closeTime[i])
+                            .setOpenTime(ShopDataDummy.openTime[i])
+                            .setImage_url(ShopDataDummy.image_url[i])
+                            .build());
         }
+
 
         adapter = new ShopAdapter(data);
         recyclerView.setAdapter(adapter);
         buildRecyclerView();
-
     }
 
     public void buildRecyclerView() {

@@ -61,7 +61,6 @@ public class Shop implements Serializable {
 //        return geoFire;
 //    }
 
-
     public double getLocationLat() {
         return locationLat;
     }
@@ -88,6 +87,10 @@ public class Shop implements Serializable {
 
     public Map<String, Boolean> getShopType() {
         return shopType;
+    }
+
+    public String getImage_url(){
+        return image_url;
     }
 
 }

@@ -70,7 +70,6 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         holder.textViewOpenTime.setText((CharSequence) shop.getOpenTime());
         holder.textViewShopName.setText(shop.getShopName());
         Glide.with(holder.imageViewIcon).load(shop.getImage_url()).into(holder.imageViewIcon);
-
     }
 
     @Override
