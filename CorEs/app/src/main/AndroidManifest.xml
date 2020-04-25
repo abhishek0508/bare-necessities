@@ -15,7 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShopDetails"></activity>
+        <activity android:name=".Register"></activity>
+        <activity android:name=".SignIn" />
+        <activity android:name=".RegisterSignIn" />
+        <activity android:name=".ShopDetails" />
         <activity android:name=".Shop" />
         <activity android:name=".ShopList" />
         <activity android:name=".CustomerRegistration" />
