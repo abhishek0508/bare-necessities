@@ -203,11 +203,8 @@ class ShopBuilder {
         //if user object does not break any assumption of system
     }
 
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public void setImage_url(String image_url) {
+    public ShopBuilder setImage_url(String image_url) {
         this.image_url = image_url;
+        return this;
     }
 }
