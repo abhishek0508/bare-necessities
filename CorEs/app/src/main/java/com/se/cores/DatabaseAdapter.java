@@ -43,9 +43,9 @@ class DatabaseAdapter {
 
     }
 
-    void addNewShop(Shop shop) {
+    void addNewShop(final Shop shop) {
 
-        GeoFire geoFire = new GeoFire(shopsReference);
+        final GeoFire geoFire = new GeoFire(shopsReference);
 
         shopsReference.add(shop)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
