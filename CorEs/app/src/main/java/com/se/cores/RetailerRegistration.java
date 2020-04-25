@@ -43,11 +43,9 @@ import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class RetailerRegistration extends AppCompatActivity {
 
@@ -236,6 +234,10 @@ public class RetailerRegistration extends AppCompatActivity {
                 Shop newShop = new ShopBuilder().setShopName(shopName)
                                                 .setGstNumber(GSTnum)
                                                 .setShopType(shopTypeMap)
+                                                .setOpenTime(openingTime)
+                                                .setCloseTime(closingTime)
+                                                .setLocationLat(shopLatitude)
+                                                .setLocationLong(shopLongitude)
                                                 .build();
 
                 DatabaseAdapter db = new DatabaseAdapter();

@@ -2,10 +2,8 @@ package com.se.cores;
 
 import androidx.annotation.NonNull;
 
-import com.google.firebase.FirebaseError;
-import com.google.firebase.firestore.CollectionReference;
-import com.koalap.geofirestore.GeoFire;
-import com.koalap.geofirestore.GeoLocation;
+//import com.koalap.geofirestore.GeoFire;
+//import com.koalap.geofirestore.GeoLocation;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,10 +16,12 @@ public class Shop implements Serializable {
     private FeedBack feedBack;
     private String gstNumber;
     private List<String> itemUnavailable;
-    private GeoFire geoFire;
+//    private GeoFire geoFire;
+    private double locationLat;
+    private double locationLong;
     private Retailer retailerId;
-    private Date openTime;
-    private Date closeTime;
+    private String openTime;
+    private String closeTime;
     private boolean openCloseStatus;
     private Map<String,Boolean> shopType;
     private String image_url;
@@ -31,7 +31,9 @@ public class Shop implements Serializable {
         this.feedBack = builder.feedBack;
         this.gstNumber = builder.gstNumber;
         this.itemUnavailable = builder.itemUnavailable;
-        this.geoFire = builder.geoFire;
+//        this.geoFire = builder.geoFire;
+        this.locationLat = builder.locationLat;
+        this.locationLong = builder.locationLong;
         this.retailerId = builder.retailerId;
         this.openTime = builder.openTime;
         this.closeTime = builder.closeTime;
@@ -55,19 +57,28 @@ public class Shop implements Serializable {
         return itemUnavailable;
     }
 
-    public GeoFire getGeoFire() {
-        return geoFire;
+//    public GeoFire getGeoFire() {
+//        return geoFire;
+//    }
+
+
+    public double getLocationLat() {
+        return locationLat;
+    }
+
+    public double getLocationLong() {
+        return locationLong;
     }
 
     public Retailer getRetailerId() {
         return retailerId;
     }
 
-    public Date getOpenTime() {
+    public String getOpenTime() {
         return openTime;
     }
 
-    public Date getCloseTime() {
+    public String getCloseTime() {
         return closeTime;
     }
 
@@ -87,10 +98,12 @@ class ShopBuilder {
     FeedBack feedBack;
     String gstNumber;
     List<String> itemUnavailable;
-    GeoFire geoFire;
+//    GeoFire geoFire;
+    double locationLat;
+    double locationLong;
     Retailer retailerId;
-    Date openTime;
-    Date closeTime;
+    String openTime;
+    String closeTime;
     boolean openCloseStatus;
     Map<String,Boolean> shopType;
 
@@ -116,21 +129,32 @@ class ShopBuilder {
         return this;
     }
 
-    public ShopBuilder setGeoFire(CollectionReference ref, double latitude, double longitude) {
-        geoFire = new GeoFire(ref);
-        geoFire.setLocation("firebase-hq", new GeoLocation(latitude, -longitude),
-                new GeoFire.CompletionListener() {
-                    FirebaseError error;
-                    @Override
-                    public void onComplete(String key, Exception exception) {
-                        if (error != null) {
-                            System.err.println("There was an error saving the location to GeoFire: " + exception.toString());
-                        } else {
-                            System.out.println("Location saved on server successfully!");
-                        }
-                    }
-                });
+//    public ShopBuilder setGeoFire(CollectionReference ref, double latitude, double longitude) {
+//        geoFire = new GeoFire(ref);
+//        geoFire.setLocation("firebase-hq", new GeoLocation(latitude, -longitude),
+//                new GeoFire.CompletionListener() {
+//                    FirebaseError error;
+//                    @Override
+//                    public void onComplete(String key, Exception exception) {
+//                        if (error != null) {
+//                            System.err.println("There was an error saving the location to GeoFire: " + exception.toString());
+//                        } else {
+//                            System.out.println("Location saved on server successfully!");
+//                        }
+//                    }
+//                });
+//
+//        return this;
+//    }
 
+
+    public ShopBuilder setLocationLat(double locationLat) {
+        this.locationLat = locationLat;
+        return this;
+    }
+
+    public ShopBuilder setLocationLong(double locationLong) {
+        this.locationLong = locationLong;
         return this;
     }
 
@@ -139,12 +163,12 @@ class ShopBuilder {
         return this;
     }
 
-    public ShopBuilder setOpenTime(Date openTime) {
+    public ShopBuilder setOpenTime(String openTime) {
         this.openTime = openTime;
         return this;
     }
 
-    public ShopBuilder setCloseTime(Date closeTime) {
+    public ShopBuilder setCloseTime(String closeTime) {
         this.closeTime = closeTime;
         return this;
     }
