@@ -3,9 +3,11 @@ package com.se.cores;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import java.util.List;
 
 public class ShopDetails extends AppCompatActivity implements FeedbackShopStatusDialog.FeedbackShopStatusListener,
                                                               FeedbackItemAvailableDialog.FeedbackItemDialogListener {
@@ -13,13 +15,17 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
     FeedBack feedBack;
     FeedbackBuilder feedbackBuilder;
     String shopID;
-
+    private Shop shop;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_details);
 
         DatabaseAdapter db = new DatabaseAdapter();
+
+        Intent intent = getIntent();
+        shop = (Shop)intent.getSerializableExtra("SHOP");
 
         Button feedbackButton = findViewById(R.id.feedbackButton);
 
