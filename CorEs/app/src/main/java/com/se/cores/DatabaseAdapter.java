@@ -4,13 +4,16 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.koalap.geofirestore.GeoFire;
 import com.koalap.geofirestore.GeoLocation;
@@ -24,6 +27,7 @@ class DatabaseAdapter {
     CollectionReference shopsReference;
     CollectionReference customerReference;
     CollectionReference retailerReference;
+    CollectionReference feedbackReference;
 
     DatabaseAdapter() {
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -86,5 +90,54 @@ class DatabaseAdapter {
     List<Shop> getShops(){
         List<Shop> shops = new ArrayList<Shop>();
         return shops;
+    }
+
+    void updateFeedback(FeedBack feedBack, String shopID) {
+        // Read existing values
+
+        Log.d("updateFeedback", "Reached here");
+
+        /*
+        int itemUpvotes, itemDownvotes, statusUpvotes, statusDownvotes;
+
+        DocumentReference feedbackDoc = feedbackReference.document(shopID);
+        feedbackDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("updateFeedback", "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d("updateFeedback", "No such document");
+                    }
+                } else {
+                    Log.d("updateFeedback", "get failed with ", task.getException());
+                }
+            }
+        });
+
+
+
+        // Add 1 in 2 of the 4 values
+
+        if(feedBack.isItemAvailability()) {
+            itemUpvotes += 1;
+        }
+        else {
+            itemDownvotes += 1;
+        }
+
+        if(feedBack.isTrueStatus())
+        {
+            statusUpvotes += 1;
+        }
+        else {
+            statusDownvotes += 1;
+        }
+
+        // Update in DB
+
+         */
     }
 }
