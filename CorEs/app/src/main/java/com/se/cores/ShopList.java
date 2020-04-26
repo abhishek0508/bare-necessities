@@ -14,8 +14,7 @@ public class ShopList extends AppCompatActivity {
     private static RecyclerView recyclerView;
     private static ShopAdapter adapter;
     private static List<Shop> data;
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

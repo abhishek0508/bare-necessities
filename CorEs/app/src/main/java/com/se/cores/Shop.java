@@ -36,7 +36,7 @@ public class Shop implements Serializable{
         this.closeTime = builder.closeTime;
         this.openCloseStatus = builder.openCloseStatus;
         this.shopType = builder.shopType;
-        this.image_url = builder.image_url;
+        this.imageUrl = builder.imageUrl;
     }
 
     public String getShopName() {
