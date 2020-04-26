@@ -11,4 +11,11 @@
     <string name="GSTnum">Enter shop GST number (if available)</string>
     <string name="email">Enter your email id</string>
     <string name="passwordCreate">Create a password</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="itemAvailable">Were there any OTHER items unavailable other than those listed?</string>
+    <string name="shopStatusTrue">Was the shop really open/closed as indicated?</string>
+    <string name="giveFeedback">Give Feedback</string>
+    <string name="statusOpen">This shop is currently open</string>
+    <string name="statusClosed">This shop is currently closed</string>
 </resources>

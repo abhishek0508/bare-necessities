@@ -5,7 +5,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,6 +14,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -33,11 +34,13 @@ import java.util.Map;
 import static androidx.core.content.ContextCompat.getSystemService;
 
 class DatabaseAdapter {
-//    DatabaseReference rootNodeReference;
+    private static final String TAG = "Database Adapter";
+    //    DatabaseReference rootNodeReference;
     FirebaseFirestore db;
     CollectionReference shopsReference;
     CollectionReference customerReference;
     CollectionReference retailerReference;
+    CollectionReference feedbackReference;
 
     DatabaseAdapter() {
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -57,15 +60,19 @@ class DatabaseAdapter {
 
     }
 
-    void addNewShop(final Shop shop) {
+    String addNewShop(final Shop shop) {
 
         final GeoFire geoFire = new GeoFire(shopsReference);
+
+        final String[] shopID = new String[1];
 
         shopsReference.add(shop)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
                                 Log.d("addNewShop", "Document added with ID: " + documentReference.getId());
+
+                                shopID[0] = documentReference.getId();
 
                                 geoFire.setLocation(documentReference.getId(), new GeoLocation(shop.getLocationLat(), shop.getLocationLong()), null);
 //                                        new GeoFire.CompletionListener() {
@@ -89,6 +96,8 @@ class DatabaseAdapter {
                         });
 
         Log.d("addNewShop", "New shop added");
+
+        return shopID[0];
     }
 
     protected LocationManager locationManager;
@@ -143,6 +152,76 @@ class DatabaseAdapter {
                     }
                 });
         return shops;
+    }
+      
+    public  List<Shop> getShops(){
+        List<Shop> list = new ArrayList<>();
+        shopsReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Shop shop = document.toObject(Shop.class);
+                        Log.d(TAG, shop.toString());
+                        list.add(shop);
+                    }
+
+                    Log.d(TAG, list.toString());
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
+        return list;
+    }
+
+    void updateFeedback(FeedBack feedBack, String shopID) {
+        // Read existing values
+
+        Log.d("updateFeedback", "Reached here");
+
+        /*
+        int itemUpvotes, itemDownvotes, statusUpvotes, statusDownvotes;
+
+        DocumentReference feedbackDoc = feedbackReference.document(shopID);
+        feedbackDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("updateFeedback", "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d("updateFeedback", "No such document");
+                    }
+                } else {
+                    Log.d("updateFeedback", "get failed with ", task.getException());
+                }
+            }
+        });
+
+
+
+        // Add 1 in 2 of the 4 values
+
+        if(feedBack.isItemAvailability()) {
+            itemUpvotes += 1;
+        }
+        else {
+            itemDownvotes += 1;
+        }
+
+        if(feedBack.isTrueStatus())
+        {
+            statusUpvotes += 1;
+        }
+        else {
+            statusDownvotes += 1;
+        }
+
+        // Update in DB
+
+         */
     }
 
     Shop createShop(DocumentSnapshot document) {

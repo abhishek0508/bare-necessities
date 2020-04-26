@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -15,9 +14,9 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
 import com.google.firebase.firestore.GeoPoint;
-
+import java.io.Serializable;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 //        The project consists of a ShopListActivity that displays the RecyclerView.
@@ -32,14 +31,14 @@ public class ShopList extends AppCompatActivity {
     private static RecyclerView recyclerView;
     private static ShopAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private static ArrayList<Shop> data;
     private LocationManager locationManager;
 
+    private static List<Shop> data;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_list);
-
         layoutManager = new LinearLayoutManager(this);
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -58,21 +57,30 @@ public class ShopList extends AppCompatActivity {
 //        Log.d(TAG, "here" + String.valueOf(loc));
 //        DatabaseAdapter da = new DatabaseAdapter();
 //        List<Shop> shops = da.getShops(loc);
+        Intent intent = getIntent();
+        data = (List<Shop>)intent.getSerializableExtra("LIST");
 
+        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         adapter = new ShopAdapter(data);
+        adapter.notifyDataSetChanged();
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         buildRecyclerView();
+
     }
 
     public void buildRecyclerView() {
         adapter.setOnItemClickListener(new ShopAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                Intent intent = new Intent(v.getContext(),Shop.class);
-                intent.putExtra("ShopClass", ShopDataDummy.shopName);
+                Intent intent = new Intent(v.getContext(),ShopDetails.class);
+                intent.putExtra("SHOP", (Serializable) data.get(position));
                 startActivity(intent);
             }
         });
+
     }
 
     public GeoPoint findLocation() {

@@ -49,12 +49,15 @@ import java.util.Map;
 
 public class RetailerRegistration extends AppCompatActivity {
 
+    /**
+     * This class defines UI code for the Retailer Registration screen of the app, in which a retailer can enter their personal details and their
+     * shop's details. All of these details are added to the database, by creating objects of the Shop class and the Retailer class, and passing
+     * these objects to functions addNewShop() and addNewRetailer(), which are defined in the DatabaseAdapter class.
+     */
+
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
     private static final int PICK_IMAGE = 1;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
-
-    private int nextUserID;
-    private int nextShopID;
 
     ImageButton shopImage;
     MapView shopLocation;
@@ -145,13 +148,6 @@ public class RetailerRegistration extends AppCompatActivity {
 
                 googleMap.getUiSettings().setZoomControlsEnabled(true);
                 googleMap.setMinZoomPreference(12);
-
-                /*
-                LatLng seattle = new LatLng(47.6062095, -122.3320708);
-                googleMap.addMarker(new MarkerOptions().position(seattle).title("Seattle"));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(seattle));
-
-                 */
             }
 
             private GoogleMap.OnMyLocationButtonClickListener onMyLocationButtonClickListener =
@@ -222,12 +218,6 @@ public class RetailerRegistration extends AppCompatActivity {
 
                 // Add all data to DB
 
-                Retailer newRetailer = new RetailerBuilder().setName(retailerName)
-                                                            .setEmail(email)
-                                                            .setPassword(password)
-                                                            .setPhoneNumber(phoneNumber)
-                                                            .build();
-
                 Map<String, Boolean> shopTypeMap = new HashMap<String, Boolean>();
                 shopTypeMap.put(shopType, Boolean.TRUE);
 
@@ -241,8 +231,16 @@ public class RetailerRegistration extends AppCompatActivity {
                                                 .build();
 
                 DatabaseAdapter db = new DatabaseAdapter();
+                String shopID = db.addNewShop(newShop);
+
+                Retailer newRetailer = new RetailerBuilder().setName(retailerName)
+                                                            .setEmail(email)
+                                                            .setPassword(password)
+                                                            .setPhoneNumber(phoneNumber)
+                                                            .setShopID(shopID)
+                                                            .build();
+
 //                db.addNewRetailer(newRetailer);
-                db.addNewShop(newShop);
 
                 // Go to app home screen
 
