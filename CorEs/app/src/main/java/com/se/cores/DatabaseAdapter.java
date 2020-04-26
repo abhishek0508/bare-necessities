@@ -43,15 +43,19 @@ class DatabaseAdapter {
 
     }
 
-    void addNewShop(final Shop shop) {
+    String addNewShop(final Shop shop) {
 
         final GeoFire geoFire = new GeoFire(shopsReference);
+
+        final String[] shopID = new String[1];
 
         shopsReference.add(shop)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
                                 Log.d("addNewShop", "Document added with ID: " + documentReference.getId());
+
+                                shopID[0] = documentReference.getId();
 
                                 geoFire.setLocation(documentReference.getId(), new GeoLocation(shop.getLocationLat(), shop.getLocationLong()), null);
 //                                        new GeoFire.CompletionListener() {
@@ -75,6 +79,8 @@ class DatabaseAdapter {
                         });
 
         Log.d("addNewShop", "New shop added");
+
+        return shopID[0];
     }
 
     List<Shop> getShops(){

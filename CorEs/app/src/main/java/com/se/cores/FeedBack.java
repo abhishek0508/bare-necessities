@@ -1,31 +1,76 @@
 package com.se.cores;
 
 public class FeedBack {
-    private boolean status;
-    private Integer itemAvailabilityNo;
-    private Integer itemAvailabilityYes;
+    private String shopID;
+    private int trueStatusYes;
+    private int trueStatusNo;
+    private int itemAvailabilityYes;
+    private int itemAvailabilityNo;
 
-    public boolean isStatus() {
-        return status;
+    FeedBack(FeedbackBuilder builder) {
+        this.shopID = builder.shopID;
+        this.trueStatusYes = builder.trueStatusYes;
+        this.trueStatusNo = builder.trueStatusNo;
+        this.itemAvailabilityYes = builder.itemAvailabilityYes;
+        this.itemAvailabilityNo = builder.itemAvailabilityNo;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public String getShopID() {
+        return shopID;
     }
 
-    public Integer getItemAvailabilityNo() {
-        return itemAvailabilityNo;
+    public int getTrueStatusYes() {
+        return trueStatusYes;
     }
 
-    public void setItemAvailabilityNo(Integer itemAvailabilityNo) {
-        this.itemAvailabilityNo = itemAvailabilityNo;
+    public int getTrueStatusNo() {
+        return trueStatusNo;
     }
 
-    public Integer getItemAvailabilityYes() {
+    public int getItemAvailabilityYes() {
         return itemAvailabilityYes;
     }
 
-    public void setItemAvailabilityYes(Integer itemAvailabilityYes) {
+    public int getItemAvailabilityNo() {
+        return itemAvailabilityNo;
+    }
+}
+
+class FeedbackBuilder {
+    String shopID;
+    int trueStatusYes;
+    int trueStatusNo;
+    int itemAvailabilityNo;
+    int itemAvailabilityYes;
+
+    public FeedbackBuilder() {}
+
+    public FeedbackBuilder setShopID(String shopID) {
+        this.shopID = shopID;
+        return this;
+    }
+
+    public FeedbackBuilder setTrueStatusYes(int trueStatusYes) {
+        this.trueStatusYes = trueStatusYes;
+        return this;
+    }
+
+    public FeedbackBuilder setTrueStatusNo(int trueStatusNo) {
+        this.trueStatusNo = trueStatusNo;
+        return this;
+    }
+
+    public FeedbackBuilder setItemAvailabilityYes(int itemAvailabilityYes) {
         this.itemAvailabilityYes = itemAvailabilityYes;
+        return this;
+    }
+
+    public FeedbackBuilder setItemAvailabilityNo(int itemAvailabilityNo) {
+        this.itemAvailabilityNo = itemAvailabilityNo;
+        return this;
+    }
+
+    public FeedBack build() {
+        return new FeedBack(this);
     }
 }
