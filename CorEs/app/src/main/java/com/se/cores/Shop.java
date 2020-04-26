@@ -2,8 +2,6 @@ package com.se.cores;
 
 import androidx.annotation.NonNull;
 
-import com.koalap.geofirestore.GeoFire;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -11,10 +9,9 @@ import java.util.Map;
 public class Shop implements Serializable {
 
     private String shopName;
-    private FeedBack feedBack;
     private String gstNumber;
     private List<String> itemUnavailable;
-//    GeoFire geoFire;
+    private List<String> itemsAvailable;
     private double locationLat;
     private double locationLong;
     private Retailer retailerId;
@@ -26,10 +23,9 @@ public class Shop implements Serializable {
 
     Shop(@NonNull ShopBuilder builder) {
         this.shopName = builder.shopName;
-        this.feedBack = builder.feedBack;
         this.gstNumber = builder.gstNumber;
         this.itemUnavailable = builder.itemUnavailable;
-//        this.geoFire = builder.geoFire;
+        this.itemsAvailable = builder.itemsAvailable;
         this.locationLat = builder.locationLat;
         this.locationLong = builder.locationLong;
         this.retailerId = builder.retailerId;
@@ -37,14 +33,11 @@ public class Shop implements Serializable {
         this.closeTime = builder.closeTime;
         this.openCloseStatus = builder.openCloseStatus;
         this.shopType = builder.shopType;
+        this.image_url = builder.image_url;
     }
 
     public String getShopName() {
         return shopName;
-    }
-
-    public FeedBack getFeedBack() {
-        return feedBack;
     }
 
     public String getGstNumber() {
@@ -55,9 +48,9 @@ public class Shop implements Serializable {
         return itemUnavailable;
     }
 
-//    public GeoFire getGeoFire() {
-//        return geoFire;
-//    }
+    public List<String> getItemsAvailable() {
+        return itemsAvailable;
+    }
 
     public double getLocationLat() {
         return locationLat;
@@ -95,10 +88,9 @@ public class Shop implements Serializable {
 class ShopBuilder {
 
     String shopName;
-    FeedBack feedBack;
     String gstNumber;
     List<String> itemUnavailable;
-//    GeoFire geoFire;
+    List<String> itemsAvailable;
     double locationLat;
     double locationLong;
     Retailer retailerId;
@@ -115,11 +107,6 @@ class ShopBuilder {
         return this;
     }
 
-    public ShopBuilder setFeedBack(FeedBack feedBack) {
-        this.feedBack = feedBack;
-        return this;
-    }
-
     public ShopBuilder setGstNumber(String gstNumber) {
         this.gstNumber = gstNumber;
         return this;
@@ -127,6 +114,11 @@ class ShopBuilder {
 
     public ShopBuilder setItemUnavailable(List<String> itemUnavailable) {
         this.itemUnavailable = itemUnavailable;
+        return this;
+    }
+
+    public ShopBuilder setItemsAvailable(List<String> itemsAvailable) {
+        this.itemsAvailable = itemsAvailable;
         return this;
     }
 
