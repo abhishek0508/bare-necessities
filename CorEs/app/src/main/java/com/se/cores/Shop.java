@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class Shop implements Serializable {
+public class Shop implements Serializable{
 
     private String shopName;
     private String gstNumber;
@@ -14,12 +14,15 @@ public class Shop implements Serializable {
     private List<String> itemsAvailable;
     private double locationLat;
     private double locationLong;
-    private Retailer retailerId;
+    private String retailerId;
     private String openTime;
     private String closeTime;
     private boolean openCloseStatus;
     private Map<String,Boolean> shopType;
-    private String image_url;
+    private String imageUrl;
+
+    // no arg constructor to deal with firebase
+    public Shop(){}
 
     Shop(@NonNull ShopBuilder builder) {
         this.shopName = builder.shopName;
@@ -60,7 +63,7 @@ public class Shop implements Serializable {
         return locationLong;
     }
 
-    public Retailer getRetailerId() {
+    public String getRetailerId() {
         return retailerId;
     }
 
@@ -80,8 +83,18 @@ public class Shop implements Serializable {
         return shopType;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "Shop{" +
+                "shopName='" + shopName + '\'' +
+                ", openTime='" + openTime + '\'' +
+                ", closeTime='" + closeTime + '\'' +
+                ", image_url='" + imageUrl + '\'' +
+                '}';
     }
 }
 
@@ -93,12 +106,12 @@ class ShopBuilder {
     List<String> itemsAvailable;
     double locationLat;
     double locationLong;
-    Retailer retailerId;
+    String retailerId;
     String openTime;
     String closeTime;
     boolean openCloseStatus;
     Map<String,Boolean> shopType;
-    String image_url;
+    String imageUrl;
 
     public ShopBuilder() {}
 
@@ -132,7 +145,7 @@ class ShopBuilder {
         return this;
     }
 
-    public ShopBuilder setRetailerId(Retailer retailerId) {
+    public ShopBuilder setRetailerId(String retailerId) {
         this.retailerId = retailerId;
         return this;
     }
@@ -157,8 +170,8 @@ class ShopBuilder {
         return this;
     }
 
-    public ShopBuilder setImage_url(String image_url) {
-        this.image_url = image_url;
+    public ShopBuilder setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 

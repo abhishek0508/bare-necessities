@@ -7,10 +7,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import java.util.ArrayList;
+import java.util.List;
 
 public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder> {
-    private ArrayList<Shop> dataset;
+    private List<Shop> dataset;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener{
@@ -48,7 +48,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
             });
         }
     }
-    public ShopAdapter(ArrayList<Shop> data) {
+    public ShopAdapter(List<Shop> data) {
         this.dataset = data;
     }
 
@@ -64,12 +64,11 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
 
     @Override
     public void onBindViewHolder(final ShopViewHolder holder, final int listPosition) {
-
         Shop shop = dataset.get(listPosition);
-        holder.textViewCloseTime.setText((CharSequence) shop.getCloseTime());
-        holder.textViewOpenTime.setText((CharSequence) shop.getOpenTime());
+        holder.textViewCloseTime.setText(shop.getCloseTime());
+        holder.textViewOpenTime.setText(shop.getOpenTime());
         holder.textViewShopName.setText(shop.getShopName());
-        Glide.with(holder.imageViewIcon).load(shop.getImage_url()).into(holder.imageViewIcon);
+        Glide.with(holder.imageViewIcon).load(shop.getImageUrl()).centerCrop().into(holder.imageViewIcon);
     }
 
     @Override
