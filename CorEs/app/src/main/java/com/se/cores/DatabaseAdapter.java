@@ -1,25 +1,25 @@
 package com.se.cores;
 
 import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.koalap.geofirestore.GeoFire;
 import com.koalap.geofirestore.GeoLocation;
-
 import java.util.ArrayList;
 import java.util.List;
 
 class DatabaseAdapter {
-//    DatabaseReference rootNodeReference;
+    private static final String TAG = "Database Adapter";
+    //    DatabaseReference rootNodeReference;
     FirebaseFirestore db;
     CollectionReference shopsReference;
     CollectionReference customerReference;
@@ -44,9 +44,7 @@ class DatabaseAdapter {
     }
 
     void addNewShop(final Shop shop) {
-
         final GeoFire geoFire = new GeoFire(shopsReference);
-
         shopsReference.add(shop)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
@@ -77,8 +75,24 @@ class DatabaseAdapter {
         Log.d("addNewShop", "New shop added");
     }
 
-    List<Shop> getShops(){
-        List<Shop> shops = new ArrayList<Shop>();
-        return shops;
+    public  List<Shop> getShops(){
+        List<Shop> list = new ArrayList<>();
+        shopsReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Shop shop = document.toObject(Shop.class);
+                        Log.d(TAG, shop.toString());
+                        list.add(shop);
+                    }
+
+                    Log.d(TAG, list.toString());
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
+        return list;
     }
 }
