@@ -18,4 +18,6 @@
     <string name="giveFeedback">Give Feedback</string>
     <string name="statusOpen">This shop is currently open</string>
     <string name="statusClosed">This shop is currently closed</string>
+    <string name="okButton">OK</string>
+    <string name="loginForFeedback">Please login / sign up to give feedback</string>
 </resources>

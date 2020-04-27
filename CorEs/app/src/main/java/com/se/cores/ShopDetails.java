@@ -3,6 +3,7 @@ package com.se.cores;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 import org.w3c.dom.Text;
@@ -12,7 +13,8 @@ import java.util.List;
 
 
 public class ShopDetails extends AppCompatActivity implements FeedbackShopStatusDialog.FeedbackShopStatusListener,
-                                                              FeedbackItemAvailableDialog.FeedbackItemDialogListener {
+                                                              FeedbackItemAvailableDialog.FeedbackItemDialogListener,
+                                                              LoginForFeedbackDialog.LoginForFeedbackListener {
 
     FeedBack feedBack;
     FeedbackBuilder feedbackBuilder;
@@ -37,21 +39,29 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
           
         Button feedbackButton = findViewById(R.id.feedbackButton);
 
+        SharedPreferences sp = getSharedPreferences("CoresPref", MODE_PRIVATE);
+
         feedbackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                feedbackBuilder = new FeedbackBuilder();
+                if (sp.getBoolean("loggedIn", false) == true) {
+                    feedbackBuilder = new FeedbackBuilder().setShopID("");
 
-                DialogFragment itemFeedback = new FeedbackItemAvailableDialog();
-                itemFeedback.show(getSupportFragmentManager(), "itemFeedback");
+                    DialogFragment itemFeedback = new FeedbackItemAvailableDialog();
+                    itemFeedback.show(getSupportFragmentManager(), "itemFeedback");
 
-                DialogFragment statusFeedback = new FeedbackShopStatusDialog();
-                statusFeedback.show(getSupportFragmentManager(), "statusFeedback");
+                    DialogFragment statusFeedback = new FeedbackShopStatusDialog();
+                    statusFeedback.show(getSupportFragmentManager(), "statusFeedback");
 
-                feedBack = feedbackBuilder.build();
+                    feedBack = feedbackBuilder.build();
 
-                db.updateFeedback(feedBack, shopID);
+                    db.updateFeedback(feedBack);
+                }
+                else {
+                    DialogFragment notLoggedIn = new LoginForFeedbackDialog();
+                    notLoggedIn.show(getSupportFragmentManager(), "notLoggedInForFeedback");
+                }
             }
         });
     }
@@ -74,6 +84,11 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
     @Override
     public void onStatusDialogNegativeClick(DialogFragment dialog) {
         feedbackBuilder.setTrueStatus(false);
+    }
+
+    @Override
+    public void onLoginFeedbackDialogOKClick(DialogFragment dialog) {
+        dialog.dismiss();
     }
 }
 
