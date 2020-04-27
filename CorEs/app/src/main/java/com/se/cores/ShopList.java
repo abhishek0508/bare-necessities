@@ -34,7 +34,7 @@ public class ShopList extends AppCompatActivity {
     private LocationManager locationManager;
 
     private static List<Shop> data;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,15 +43,6 @@ public class ShopList extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-
-        data = new ArrayList<>();
-        for (int i = 0; i < ShopDataDummy.shopName.length; i++) {
-            data.add(new ShopBuilder().setShopName(ShopDataDummy.shopName[i])
-                            .setCloseTime(ShopDataDummy.closeTime[i])
-                            .setOpenTime(ShopDataDummy.openTime[i])
-                            .setImage_url(ShopDataDummy.image_url[i])
-                            .build());
-        }
 
 //        GeoPoint loc = findLocation();
 //        Log.d(TAG, "here" + String.valueOf(loc));

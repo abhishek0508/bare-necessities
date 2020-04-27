@@ -1,7 +1,6 @@
 package com.se.cores;
 
 import androidx.appcompat.app.AppCompatActivity;
-<<<<<<< HEAD
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
@@ -12,39 +11,36 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-
 import com.google.firebase.firestore.GeoPoint;
-
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-=======
 import androidx.fragment.app.DialogFragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.TextView;
+import org.w3c.dom.Text;
 import android.view.View;
 import android.widget.Button;
 import java.util.List;
->>>>>>> 7c22e3a4733fc52c458517cea62b0d280d16a756
 
 
 public class ShopDetails extends AppCompatActivity implements FeedbackShopStatusDialog.FeedbackShopStatusListener,
-                                                              FeedbackItemAvailableDialog.FeedbackItemDialogListener {
+                                                              FeedbackItemAvailableDialog.FeedbackItemDialogListener,
+                                                              LoginForFeedbackDialog.LoginForFeedbackListener {
 
-<<<<<<< HEAD
     private static final String TAG = "shop";
 
-=======
     FeedBack feedBack;
     FeedbackBuilder feedbackBuilder;
     String shopID;
     private Shop shop;
+    private TextView shopName,shopOpenCloseTime;
     
->>>>>>> 7c22e3a4733fc52c458517cea62b0d280d16a756
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_details);
-<<<<<<< HEAD
 //        DatabaseAdapter da = new DatabaseAdapter();
 //        try {
 //            da.getShopDetails("XG4yTz2TdiH8sNWNnouP");
@@ -55,29 +51,42 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
 //        GeoPoint loc = findLocation();
 //        Log.d(TAG, "here" + String.valueOf(loc));
 //        List<Shop> shops = da.getShops(loc);
-=======
         DatabaseAdapter db = new DatabaseAdapter();
 
         Intent intent = getIntent();
         shop = (Shop)intent.getSerializableExtra("SHOP");
 
+        shopName = findViewById(R.id.shopNameTextView);
+        shopOpenCloseTime = findViewById(R.id.shopTimingsTextView);
+        shopName.setText(shop.getShopName());
+        String textShopOpenCloseTime = "Timings: "+shop.getOpenTime()+" to "+shop.getCloseTime();
+        shopOpenCloseTime.setText(textShopOpenCloseTime);
+          
         Button feedbackButton = findViewById(R.id.feedbackButton);
+
+        SharedPreferences sp = getSharedPreferences("CoresPref", MODE_PRIVATE);
 
         feedbackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                feedbackBuilder = new FeedbackBuilder();
+                if (sp.getBoolean("loggedIn", false) == true) {
+                    feedbackBuilder = new FeedbackBuilder().setShopID("");
 
-                DialogFragment itemFeedback = new FeedbackItemAvailableDialog();
-                itemFeedback.show(getSupportFragmentManager(), "itemFeedback");
+                    DialogFragment itemFeedback = new FeedbackItemAvailableDialog();
+                    itemFeedback.show(getSupportFragmentManager(), "itemFeedback");
 
-                DialogFragment statusFeedback = new FeedbackShopStatusDialog();
-                statusFeedback.show(getSupportFragmentManager(), "statusFeedback");
+                    DialogFragment statusFeedback = new FeedbackShopStatusDialog();
+                    statusFeedback.show(getSupportFragmentManager(), "statusFeedback");
 
-                feedBack = feedbackBuilder.build();
+                    feedBack = feedbackBuilder.build();
 
-                db.updateFeedback(feedBack, shopID);
+                    db.updateFeedback(feedBack);
+                }
+                else {
+                    DialogFragment notLoggedIn = new LoginForFeedbackDialog();
+                    notLoggedIn.show(getSupportFragmentManager(), "notLoggedInForFeedback");
+                }
             }
         });
     }
@@ -100,7 +109,6 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
     @Override
     public void onStatusDialogNegativeClick(DialogFragment dialog) {
         feedbackBuilder.setTrueStatus(false);
->>>>>>> 7c22e3a4733fc52c458517cea62b0d280d16a756
     }
 
 //    public GeoPoint findLocation() {
@@ -147,5 +155,9 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
 //        }
 //        return loc;
 //    }
+    @Override
+    public void onLoginFeedbackDialogOKClick(DialogFragment dialog) {
+        dialog.dismiss();
+    }
 }
 
