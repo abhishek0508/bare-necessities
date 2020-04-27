@@ -56,7 +56,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/shopName"
                 android:layout_width="match_parent"
                 android:layout_height="37dp"
                 android:layout_marginStart="24dp"
@@ -68,7 +68,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/shopOpenTime"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:layout_marginStart="24dp"
@@ -80,7 +80,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/itemAvailable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
