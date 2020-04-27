@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".ui.main.MainFragment">
+
+    <EditText
+        android:id="@+id/UpdatedOpenTime"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="160dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/_00_00_hrs"
+        android:inputType="time"
+        android:textColor="#4CAF50"
+        android:textColorHint="#CC4CAF50"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Text_UpdateShopTiming"
+        app:layout_constraintTop_toBottomOf="@+id/Text_UpdateTime_Open"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/Text_UpdateTime_Open"
+        android:layout_width="75dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="216dp"
+        android:layout_marginLeft="216dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/ShopStatus_open"
+        android:textColor="#939090"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DeleteItemButton" />
+
+    <TextView
+        android:id="@+id/Text_UpdateShopTiming"
+        android:layout_width="176dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="92dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/update_shop_timings"
+        android:textColor="#4CAF50"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ShopUpdationPage"
+        app:layout_constraintTop_toBottomOf="@+id/OutOfStock" />
+
+    <EditText
+        android:id="@+id/UpdatedTIme_Close"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/_00_00_hrs"
+        android:inputType="time"
+        android:textColor="#4CAF50"
+        android:textColorHint="#CC4CAF50"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/UpdatedOpenTime"
+        app:layout_constraintTop_toBottomOf="@+id/Text_UpdateTImings_Close" />
+
+    <TextView
+        android:id="@+id/Text_UpdateTImings_Close"
+        android:layout_width="75dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:text="@string/Text_CloseTime"
+        android:textColor="#939090"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/Text_UpdateTime_Open"
+        tools:layout_editor_absoluteY="480dp" />
+
+    <AutoCompleteTextView
+        android:id="@+id/OutOfStock"
+        android:layout_width="178dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/out_of_stock"
+        android:textColor="#4CAF50"
+        android:textColorHint="#CC4CAF50"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ShopUpdationPage"
+        app:layout_constraintTop_toBottomOf="@+id/AvailableItems" />
+
+    <Button
+        android:id="@+id/ShopUpdationPg_BackButton"
+        android:layout_width="69dp"
+        android:layout_height="50dp"
+        android:background="#4CAF50"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/UpdationPg_Text_Back"
+        android:textColor="#FFFFFF"
+        android:textSize="23sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_ShopUpdationPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.09002433" />
+
+    <Button
+        android:id="@+id/AddItemButton"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:background="#4CAF50"
+        android:textColor="#F0F8F1"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/AvailableItems"
+        app:layout_constraintTop_toTopOf="@+id/AvailableItems"
+        tools:text="+" />
+
+    <Button
+        android:id="@+id/DeleteItemButton"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="#4CAF50"
+        android:lineSpacingExtra="8sp"
+        android:textAllCaps="false"
+        android:textColor="#F0F8F1"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/OutOfStock"
+        app:layout_constraintTop_toBottomOf="@+id/AddItemButton"
+        tools:text="-" />
+
+    <TextView
+        android:id="@+id/Text_ShopStatus"
+        android:layout_width="374dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/shop_status"
+        android:textColor="#4CAF50"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ShopUpdationPage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/switch_ShopStatus"
+        android:layout_width="82dp"
+        android:layout_height="35dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/OPEN"
+        android:textColor="#4CAF50"
+        android:textOff="@string/CLOSED"
+        android:textOn="@string/OPEN"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ShopUpdationPage"
+        app:layout_constraintTop_toBottomOf="@+id/Text_ShopStatus" />
+
+    <TextView
+        android:id="@+id/Text_ShopStatus_CLosed"
+        android:layout_width="65dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/CLOSED"
+        android:textColor="#4CAF50"
+        app:layout_constraintStart_toEndOf="@+id/switch_ShopStatus"
+        app:layout_constraintTop_toBottomOf="@+id/Text_ShopStatus" />
+
+    <AutoCompleteTextView
+        android:id="@+id/AvailableItems"
+        android:layout_width="178dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:completionHint="@string/available_items"
+        android:contentDescription="@string/available_items"
+        android:dropDownHeight="wrap_content"
+        android:hint="@string/available_items"
+        android:textColor="#4CAF50"
+        android:textColorHint="#CC4CAF50"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ShopUpdationPage"
+        app:layout_constraintTop_toBottomOf="@+id/ItemListButton" />
+
+    <TextView
+        android:id="@+id/Text_EnterItems"
+        android:layout_width="176dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/enter_items_at_your_store"
+        android:textColor="#4CAF50"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ShopUpdationPage"
+        app:layout_constraintTop_toBottomOf="@+id/Text_ShopStatus" />
+
+    <TextView
+        android:id="@+id/Text_CheckItemList"
+        android:layout_width="372dp"
+        android:layout_height="20dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/please_check_item_list_for_essentials_before_entering_items"
+        android:textColor="#4CAF50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ShopUpdationPage"
+        app:layout_constraintTop_toBottomOf="@+id/Text_EnterItems" />
+
+    <Button
+        android:id="@+id/ItemListButton"
+        android:layout_width="151dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="10dp"
+        android:background="#D3FAD5"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="@string/item_list"
+        android:textColor="#4CAF50"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ShopUpdationPage"
+        app:layout_constraintTop_toBottomOf="@+id/Text_CheckItemList" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
