@@ -3,6 +3,7 @@ package com.se.cores;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -54,6 +55,12 @@ public class SignIn extends AppCompatActivity
             }
         });
 
+        String userType = "";
+        SharedPreferences sp = getSharedPreferences("CoresPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putBoolean("loggedIn", true);    // This should be inside an if condition that checks if email and password match
+        editor.putString("userType", userType);     // Whether retailer or customer
+        editor.apply();
     }
     //open home page
     public void openHome() {

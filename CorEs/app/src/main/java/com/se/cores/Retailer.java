@@ -10,13 +10,15 @@ public class Retailer {
     private final String phoneNumber;
     private final String email;
     private final String password;
+    private String shopID;
 
-    Retailer(RetailerBuilder builder){
+    Retailer(RetailerBuilder builder) {
         this.image_url = builder.image_url;
         this.name = builder.name;
         this.phoneNumber = builder.phoneNumber;
         this.email = builder.email;
         this.password = builder.password;
+        this.shopID = builder.shopID;
     }
 
     public String getName() {
@@ -39,6 +41,10 @@ public class Retailer {
         return password;
     }
 
+    public String getShopID() {
+        return shopID;
+    }
+
     @Override
     public String toString() {
         return "Retailer{" +
@@ -55,16 +61,12 @@ class RetailerBuilder {
     String email;
     String password;
     String image_url;
+    String shopID;
 
     public RetailerBuilder() {}
 
     RetailerBuilder setName(String name) {
         this.name = name;
-        return this;
-    }
-
-    public RetailerBuilder imageUrl(String image_url){
-        this.image_url = image_url;
         return this;
     }
 
@@ -80,6 +82,16 @@ class RetailerBuilder {
 
     RetailerBuilder setPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    public RetailerBuilder setImage_url(String image_url) {
+        this.image_url = image_url;
+        return this;
+    }
+
+    public RetailerBuilder setShopID(String shopID) {
+        this.shopID = shopID;
         return this;
     }
 
