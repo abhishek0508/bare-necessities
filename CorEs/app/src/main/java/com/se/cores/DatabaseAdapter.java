@@ -28,14 +28,15 @@ import com.koalap.geofirestore.GeoLocation;
 import com.koalap.geofirestore.GeoQuery;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 
 class DatabaseAdapter {
     private static final String TAG = "Database Adapter";
-    //    DatabaseReference rootNodeReference;
     FirebaseFirestore db;
     CollectionReference shopsReference;
     CollectionReference customerReference;
@@ -43,8 +44,6 @@ class DatabaseAdapter {
     CollectionReference feedbackReference;
 
     DatabaseAdapter() {
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        rootNodeReference = database.getReference();
         db = FirebaseFirestore.getInstance();
         shopsReference = db.collection("shops");
         customerReference = db.collection("customers");
@@ -74,18 +73,10 @@ class DatabaseAdapter {
 
                                 shopID[0] = documentReference.getId();
 
-                                geoFire.setLocation(documentReference.getId(), new GeoLocation(shop.getLocationLat(), shop.getLocationLong()), null);
-//                                        new GeoFire.CompletionListener() {
-//                                            FirebaseError error;
-//                                            @Override
-//                                            public void onComplete(String key, Exception exception) {
-//                                                if (error != null) {
-//                                                    Log.w("addNewShop", "There was an error saving the location to GeoFire: " + exception.toString());
-//                                                } else {
-//                                                    Log.d("addNewShop", "Location saved successfully!");
-//                                                }
-//                                            }
-//                                        });
+                                geoFire.setLocation(documentReference.getId(),
+                                                    new GeoLocation(shop.getLocationLat(), shop.getLocationLong()),
+                                        null);
+
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -175,34 +166,100 @@ class DatabaseAdapter {
         return list;
     }
 
-    void updateFeedback(FeedBack feedBack, String shopID) {
+    ArrayList<String> readFeedback(String shopID) {
+
+        ArrayList<String> feedbackFields = new ArrayList<String>();
+
+        feedbackReference.whereEqualTo("shopID", shopID)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot feedbackDoc : task.getResult()) {
+                                        Log.d(TAG, feedbackDoc.getId() + " => " + feedbackDoc.getData());
+
+                                        feedbackFields.add(feedbackDoc.getId());
+                                        feedbackFields.add(Objects.requireNonNull(feedbackDoc.get("itemAvailabilityYes")).toString());
+                                        feedbackFields.add(Objects.requireNonNull(feedbackDoc.get("itemAvailabilityNo")).toString());
+                                        feedbackFields.add(Objects.requireNonNull(feedbackDoc.get("trueStatusYes")).toString());
+                                        feedbackFields.add(Objects.requireNonNull(feedbackDoc.get("trueStatusNo")).toString());
+                                    }
+                                } else {
+                                    Log.d(TAG, "Error getting documents ");
+                                }
+                            }
+                        });
+
+        return feedbackFields;
+    }
+
+    void writeNewFeedback(FeedBack feedBack) {
+        int itemUpvotes = 0;
+        int itemDownvotes = 0;
+        int statusUpvotes = 0;
+        int statusDownvotes = 0;
+
+        if(feedBack.isItemAvailability()) {
+            itemUpvotes = 1;
+        }
+        else {
+            itemDownvotes = 1;
+        }
+
+        if(feedBack.isTrueStatus())
+        {
+            statusUpvotes = 1;
+        }
+        else {
+            statusDownvotes = 1;
+        }
+
+        Map<String, Object> feedbackValues = new HashMap<String, Object>();
+        feedbackValues.put("shopID", feedBack.getShopID());
+        feedbackValues.put("itemAvailabilityYes", itemUpvotes);
+        feedbackValues.put("itemAvailabilityNo", itemDownvotes);
+        feedbackValues.put("trueStatusYes", statusUpvotes);
+        feedbackValues.put("trueStatusNo", statusDownvotes);
+
+        feedbackReference.add(feedbackValues)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Log.d("writeNewFeedback", "Document added with ID: " + documentReference.getId());
+
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w("writeNewFeedback", "Error adding document", e);
+                                }
+                            });
+
+    }
+
+    void updateFeedback(FeedBack feedBack) {
         // Read existing values
 
         Log.d("updateFeedback", "Reached here");
 
-        /*
+        // Get the feedback values from DB for a particular shop
+        ArrayList<String> feedBackFields = readFeedback(feedBack.getShopID());
+
+        if (feedBackFields.isEmpty()) {
+            writeNewFeedback(feedBack);
+            return;
+        }
+
         int itemUpvotes, itemDownvotes, statusUpvotes, statusDownvotes;
 
-        DocumentReference feedbackDoc = feedbackReference.document(shopID);
-        feedbackDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d("updateFeedback", "DocumentSnapshot data: " + document.getData());
-                    } else {
-                        Log.d("updateFeedback", "No such document");
-                    }
-                } else {
-                    Log.d("updateFeedback", "get failed with ", task.getException());
-                }
-            }
-        });
+        itemUpvotes = Integer.parseInt(feedBackFields.get(1));
+        itemDownvotes = Integer.parseInt(feedBackFields.get(2));
+        statusUpvotes = Integer.parseInt(feedBackFields.get(3));
+        statusDownvotes = Integer.parseInt(feedBackFields.get(4));
 
-
-
-        // Add 1 in 2 of the 4 values
+        // Add +1 in 2 of the 4 values
 
         if(feedBack.isItemAvailability()) {
             itemUpvotes += 1;
@@ -221,7 +278,27 @@ class DatabaseAdapter {
 
         // Update in DB
 
-         */
+        String feedbackDocID = feedBackFields.get(0);
+
+        feedbackReference.document(feedbackDocID)
+                        .update(
+                                "itemAvailabilityYes", itemUpvotes,
+                                "itemAvailabilityNo", itemDownvotes,
+                                "trueStatusYes", statusUpvotes,
+                                "trueStatusNo", statusDownvotes
+                        )
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "Feedback doc successfully updated!");
+                        }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error updating feedback document", e);
+                            }
+                        });
     }
 
     Shop createShop(DocumentSnapshot document) {
@@ -272,9 +349,10 @@ class DatabaseAdapter {
         String TAG = "update shop details";
         shopsReference.document(shopID)
                 .update(
+                        "openCloseStatus", shop.isOpenCloseStatus(),
                         "openTime", shop.getOpenTime(),
                         "closeTime", shop.getCloseTime(),
-//                        "itemAvailable", shop.getItemAvailable(),
+                        "itemsAvailable", shop.getItemsAvailable(),
                         "itemUnavailable", shop.getItemUnavailable()
                         )
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

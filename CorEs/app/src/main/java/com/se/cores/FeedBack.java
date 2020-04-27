@@ -1,7 +1,7 @@
 package com.se.cores;
 
 public class FeedBack {
-    private String shopID;
+    private String shopID;  // For that shop for which the feedback is given
     private boolean trueStatus;
     private boolean itemAvailability;
 
