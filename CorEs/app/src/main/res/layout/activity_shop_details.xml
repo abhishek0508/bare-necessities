@@ -67,7 +67,6 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/shopOpenTime"
                 android:id="@+id/shopStatusTextView"
                 android:layout_width="match_parent"
                 android:layout_height="37dp"
@@ -80,7 +79,7 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/shopTimingsTextView
+                android:id="@+id/shopTimingsTextView"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:layout_marginStart="24dp"

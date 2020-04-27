@@ -44,15 +44,6 @@ public class ShopList extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 
-//        data = new ArrayList<>();
-//        for (int i = 0; i < ShopDataDummy.shopName.length; i++) {
-//            data.add(new ShopBuilder().setShopName(ShopDataDummy.shopName[i])
-//                            .setCloseTime(ShopDataDummy.closeTime[i])
-//                            .setOpenTime(ShopDataDummy.openTime[i])
-//                            .setImage_url(ShopDataDummy.image_url[i])
-//                            .build());
-//        }
-
 //        GeoPoint loc = findLocation();
 //        Log.d(TAG, "here" + String.valueOf(loc));
 //        DatabaseAdapter da = new DatabaseAdapter();
