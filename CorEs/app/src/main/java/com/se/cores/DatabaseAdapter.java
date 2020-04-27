@@ -55,10 +55,56 @@ class DatabaseAdapter {
         retailerReference = db.collection("retailers");
     }
 
-    void addNewCustomer(Customer customer) {
-//                rootNodeReference.child("shops")
+    void addNewCustomer(Customer customer)
+    {
         Log.d("DatabaseAdapter", "New user added");
+        customerReference.add(customer)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Log.d("addNewUser", "User added with ID: " + documentReference.getId());
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w("addNewUser", "Error adding USER", e);
+
+                            }
+                        });
     }
+
+    Boolean validateCustomer(Login login)
+    {
+        Log.d("DatabaseAdapter", "validate data");
+        LoginBuilder loginBuilderObject = new LoginBuilder();
+        loginBuilderObject.setStatus(false);
+        Boolean validate=false;
+        customerReference.whereEqualTo("email",login.getEmail()).whereEqualTo("password",login.getPassword())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful())
+                        {
+                            loginBuilderObject.setStatus(true);
+                            Login loginObject;
+                            loginObject=loginBuilderObject.build();
+                            Log.d("check",loginObject.getStatus().toString());
+                            for (QueryDocumentSnapshot document : task.getResult())
+                            {
+                                Log.d("readUser", document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d("readUser", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+
+        return validate;
+    }
+
 
     void addNewRetailer(Retailer retailer) {
 

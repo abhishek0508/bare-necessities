@@ -31,12 +31,12 @@ public class RegisterSignIn extends AppCompatActivity {
         });
     }
     public void openSignIn() {
-        Intent intent = new Intent(this,SignIn.class);
-        startActivity(intent);
+        Intent signIn_intent = new Intent(this,SignIn.class);
+        startActivity(signIn_intent);
     }
 
     public void openRegistration() {
-        Intent intent = new Intent(this,Register.class);
-        startActivity(intent);
+        Intent register_intent = new Intent(this,Register.class);
+        startActivity(register_intent);
     }
 }

@@ -7,12 +7,14 @@ class Customer {
     private final String email;
     private final String password;
     private final String phoneNumber;
+    private final String image_url;
 
     Customer(@NonNull CustomerBuilder builder) {
         this.name = builder.name;
         this.email = builder.email;
         this.password = builder.password;
         this.phoneNumber = builder.phoneNumber;
+        this.image_url = builder.image_url;
     }
 
     public String getName() {
@@ -31,6 +33,8 @@ class Customer {
         return phoneNumber;
     }
 
+    public String getImage_url() { return image_url;}
+
 }
 
 class CustomerBuilder {
@@ -38,6 +42,7 @@ class CustomerBuilder {
     String phoneNumber;
     String email;
     String password;
+    String image_url;
 
     public CustomerBuilder() {}
 
@@ -58,6 +63,12 @@ class CustomerBuilder {
 
     CustomerBuilder setPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    CustomerBuilder setImage_url(String image_url)
+    {
+        this.image_url = image_url;
         return this;
     }
 
