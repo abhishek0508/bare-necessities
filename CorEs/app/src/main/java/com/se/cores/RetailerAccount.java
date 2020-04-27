@@ -17,7 +17,6 @@ public class RetailerAccount extends AppCompatActivity {
         setContentView(R.layout.retailer_account);
 
         Button saveButton = findViewById(R.id.saveButtonRA);
-
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
