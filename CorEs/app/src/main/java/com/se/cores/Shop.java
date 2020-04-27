@@ -11,7 +11,7 @@ public class Shop implements Serializable{
     private String shopName;
     private String gstNumber;
     private List<String> itemUnavailable;
-    private List<String> itemsAvailable;
+    private List<String> itemAvailable;
     private double locationLat;
     private double locationLong;
     private String retailerId;
@@ -28,7 +28,7 @@ public class Shop implements Serializable{
         this.shopName = builder.shopName;
         this.gstNumber = builder.gstNumber;
         this.itemUnavailable = builder.itemUnavailable;
-        this.itemsAvailable = builder.itemsAvailable;
+        this.itemAvailable = builder.itemAvailable;
         this.locationLat = builder.locationLat;
         this.locationLong = builder.locationLong;
         this.retailerId = builder.retailerId;
@@ -52,7 +52,7 @@ public class Shop implements Serializable{
     }
 
     public List<String> getItemsAvailable() {
-        return itemsAvailable;
+        return itemAvailable;
     }
 
     public double getLocationLat() {
@@ -103,7 +103,7 @@ class ShopBuilder {
     String shopName;
     String gstNumber;
     List<String> itemUnavailable;
-    List<String> itemsAvailable;
+    List<String> itemAvailable;
     double locationLat;
     double locationLong;
     String retailerId;
@@ -131,7 +131,7 @@ class ShopBuilder {
     }
 
     public ShopBuilder setItemsAvailable(List<String> itemsAvailable) {
-        this.itemsAvailable = itemsAvailable;
+        this.itemAvailable = itemsAvailable;
         return this;
     }
 
