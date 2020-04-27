@@ -5,6 +5,8 @@ import androidx.fragment.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.TextView;
+import org.w3c.dom.Text;
 import android.view.View;
 import android.widget.Button;
 import java.util.List;
@@ -18,6 +20,7 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
     FeedbackBuilder feedbackBuilder;
     String shopID;
     private Shop shop;
+    private TextView shopName,shopOpenCloseTime;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,12 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
         Intent intent = getIntent();
         shop = (Shop)intent.getSerializableExtra("SHOP");
 
+        shopName =(TextView) findViewById(R.id.shopName);
+        shopOpenCloseTime = (TextView) findViewById(R.id.shopOpenTime);
+        shopName.setText(shop.getShopName());
+        String textShopOpenCloseTime = "Timings: "+shop.getOpenTime()+" to "+shop.getCloseTime();
+        shopOpenCloseTime.setText(textShopOpenCloseTime)
+          
         Button feedbackButton = findViewById(R.id.feedbackButton);
 
         SharedPreferences sp = getSharedPreferences("CoresPref", MODE_PRIVATE);
