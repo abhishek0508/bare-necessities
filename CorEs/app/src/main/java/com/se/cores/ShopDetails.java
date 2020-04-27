@@ -12,6 +12,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import com.google.firebase.firestore.GeoPoint;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import androidx.fragment.app.DialogFragment;
@@ -71,7 +73,7 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
             public void onClick(View v) {
 
                 if (sp.getBoolean("loggedIn", false) == true) {
-                    feedbackBuilder = new FeedbackBuilder().setShopID("");
+                    feedbackBuilder = new FeedbackBuilder().setShopID("tj0AkwWcvgXH0sgwX7vQ");
 
                     DialogFragment itemFeedback = new FeedbackItemAvailableDialog();
                     itemFeedback.show(getSupportFragmentManager(), "itemFeedback");
@@ -81,7 +83,13 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
 
                     feedBack = feedbackBuilder.build();
 
-                    db.updateFeedback(feedBack);
+                    try {
+                        db.updateFeedback(feedBack);
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
                 else {
                     DialogFragment notLoggedIn = new LoginForFeedbackDialog();
@@ -89,6 +97,42 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
                 }
             }
         });
+
+        TextView itemFeedback = findViewById(R.id.feedbackItemsText);
+        TextView statusFeedback = findViewById(R.id.feedbackStatusText);
+
+        ArrayList<String> feedBackFields = new ArrayList<String>();
+        feedBackFields.add("id");
+        feedBackFields.add("8");
+        feedBackFields.add("1");
+        feedBackFields.add("10");
+        feedBackFields.add("2");
+        /*
+        try {
+            feedBackFields = db.readFeedback("tj0AkwWcvgXH0sgwX7vQ");
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+         */
+        int itemUpvotes, itemDownvotes, statusUpvotes, statusDownvotes;
+
+        itemUpvotes = Integer.parseInt(feedBackFields.get(1));
+        itemDownvotes = Integer.parseInt(feedBackFields.get(2));
+        statusUpvotes = Integer.parseInt(feedBackFields.get(3));
+        statusDownvotes = Integer.parseInt(feedBackFields.get(4));
+
+        float itemTotal = itemUpvotes + itemDownvotes;
+        float statusTotal = statusUpvotes + statusDownvotes;
+
+        float itemReliablePercent = ((float)itemUpvotes/itemTotal) * 100.0F;
+        float statusReliablePercent = ((float)statusUpvotes/statusTotal) * 100.0F;
+
+        itemFeedback.setText(itemReliablePercent + " % people have found the item listing to be reliable");
+        statusFeedback.setText(statusReliablePercent + " % people have found the open/closed status to be reliable");
+
     }
 
     @Override

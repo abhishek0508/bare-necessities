@@ -7,6 +7,7 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.util.Log;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,13 +23,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.koalap.geofirestore.GeoFire;
 import com.koalap.geofirestore.GeoLocation;
 import com.koalap.geofirestore.GeoQuery;
+import com.google.android.gms.tasks.Tasks;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +58,7 @@ class DatabaseAdapter {
         shopsReference = db.collection("shops");
         customerReference = db.collection("customers");
         retailerReference = db.collection("retailers");
+        feedbackReference = db.collection("feedback");
     }
 
     void addNewCustomer(Customer customer)
@@ -218,30 +224,51 @@ class DatabaseAdapter {
         return list;
     }
 
-    ArrayList<String> readFeedback(String shopID) {
+    ArrayList<String> readFeedback(String shopID) throws ExecutionException, InterruptedException {
 
+        Log.d("DATABASE ADAPTER", "TILL HERE");
         ArrayList<String> feedbackFields = new ArrayList<String>();
 
-        feedbackReference.whereEqualTo("shopID", shopID)
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot feedbackDoc : task.getResult()) {
-                                        Log.d(TAG, feedbackDoc.getId() + " => " + feedbackDoc.getData());
+        Query feedbackQuery = feedbackReference.whereEqualTo("shopID", shopID);
 
-                                        feedbackFields.add(feedbackDoc.getId());
-                                        feedbackFields.add(Objects.requireNonNull(feedbackDoc.get("itemAvailabilityYes")).toString());
-                                        feedbackFields.add(Objects.requireNonNull(feedbackDoc.get("itemAvailabilityNo")).toString());
-                                        feedbackFields.add(Objects.requireNonNull(feedbackDoc.get("trueStatusYes")).toString());
-                                        feedbackFields.add(Objects.requireNonNull(feedbackDoc.get("trueStatusNo")).toString());
-                                    }
-                                } else {
-                                    Log.d(TAG, "Error getting documents ");
-                                }
-                            }
-                        });
+        final QuerySnapshot querySnapshot = Tasks.await(feedbackQuery.get());
+        List<DocumentSnapshot> feedDocs = querySnapshot.getDocuments();
+        DocumentSnapshot feedbackDoc = feedDocs.get(0);
+
+        Log.d("DATABASE ADAPTER", "I CAN REAAAAAAD!");
+        Log.d(TAG, feedbackDoc.getId() + " => " + feedbackDoc.getData());
+
+        feedbackFields.add(feedbackDoc.getId());
+        feedbackFields.add(Objects.requireNonNull(feedbackDoc.get("itemAvailabilityYes")).toString());
+        feedbackFields.add(Objects.requireNonNull(feedbackDoc.get("itemAvailabilityNo")).toString());
+        feedbackFields.add(Objects.requireNonNull(feedbackDoc.get("trueStatusYes")).toString());
+        feedbackFields.add(Objects.requireNonNull(feedbackDoc.get("trueStatusNo")).toString());
+
+
+//        DocumentReference feedbackDoc = feedbackReference.document("ibFqY80y6R4RwM5vjQ3D ");
+//        feedbackDoc.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+//            @Override
+//            public void onEvent(@Nullable DocumentSnapshot snapshot,
+//                                @Nullable FirebaseFirestoreException e) {
+//                if (e != null) {
+//                    Log.w(TAG, "Listen failed.", e);
+//                    return;
+//                }
+//
+//                if (snapshot != null && snapshot.exists()) {
+//                    Log.d(TAG, "Current data: " + snapshot.getData());
+//
+//                    feedbackFields.add(snapshot.getId());
+//                    feedbackFields.add(Objects.requireNonNull(snapshot.get("itemAvailabilityYes")).toString());
+//                    feedbackFields.add(Objects.requireNonNull(snapshot.get("itemAvailabilityNo")).toString());
+//                    feedbackFields.add(Objects.requireNonNull(snapshot.get("trueStatusYes")).toString());
+//                    feedbackFields.add(Objects.requireNonNull(snapshot.get("trueStatusNo")).toString());
+//
+//                } else {
+//                    Log.d(TAG, "Current data: null");
+//                }
+//            }
+//        });
 
         return feedbackFields;
     }
@@ -291,7 +318,7 @@ class DatabaseAdapter {
 
     }
 
-    void updateFeedback(FeedBack feedBack) {
+    void updateFeedback(FeedBack feedBack) throws ExecutionException, InterruptedException {
         // Read existing values
 
         Log.d("updateFeedback", "Reached here");
