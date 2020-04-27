@@ -4,13 +4,16 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.util.Log;
 import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.FirebaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -31,9 +34,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.Objects;
 
 import static androidx.core.content.ContextCompat.getSystemService;
+
 
 class DatabaseAdapter {
     private static final String TAG = "Database Adapter";
@@ -142,6 +147,7 @@ class DatabaseAdapter {
                         }
                     }
                 });
+        Log.d(TAG, shops.get(0).getShopName());
         return shops;
     }
       
@@ -318,10 +324,28 @@ class DatabaseAdapter {
         return shop;
     }
 
-    Shop getShopDetails(String shopID){
+    private interface MyCallback {
+        void onCallback(Shop shop);
+//        void onCallback(List<Shop> shops);
+    }
+
+    void getShopDetails(String shopID) {
+        Shop shop;
+        getShopDetails(shopID, new MyCallback()  {
+            @Override
+            public void onCallback(Shop shop1) {
+                //Do what you need to do with your list
+
+
+                Log.d("get shop details", "DocumentSnapshot data: " + shop1.getShopName());
+            }
+        });
+    }
+
+
+
+    void getShopDetails(String shopID, MyCallback myCallback){
         String TAG = "get shop details";
-        ShopBuilder shopBuilder = new ShopBuilder();
-        final Shop[] shop = new Shop[1];
         shopsReference.document(shopID)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -331,8 +355,9 @@ class DatabaseAdapter {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
                                 Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                                shop[0] = createShop(document);
-                                Log.d(TAG, "DocumentSnapshot data: " + shop[0]);
+                                Shop shop = createShop(document);
+                                Log.d(TAG, "DocumentSnapshot data: " + shop);
+                                myCallback.onCallback(shop);
                             } else {
                                 Log.d(TAG, "No such document");
                             }
@@ -341,8 +366,86 @@ class DatabaseAdapter {
                         }
                     }
                 });
-        return shop[0];
     }
+
+
+//    async Shop  getShopDetails(String shopID) {
+//        var cityRef;
+//        try{
+//            cityRef = await db.collection('cities').doc('SF');
+//            // do stuff
+//        } catch(e) {
+//            // error!
+//        }
+//
+
+//    @WorkerThread
+//    void  getShopDetails(String shopID) throws ExecutionException, InterruptedException {
+//        String TAG = "get shop details";
+//        ShopBuilder shopBuilder = new ShopBuilder();
+//        final Shop[] shop = new Shop[1];
+//        DocumentSnapshot document = Tasks.await(shopsReference.document(shopID).get());
+//        if (document.exists()) {
+//            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+//            shop[0] = createShop(document);
+//            Log.d(TAG, "DocumentSnapshot data: " + shop[0]);
+//        } else {
+//            Log.d(TAG, "No such document");
+//        }
+////                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+////                    @Override
+////                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+////                        if (task.isSuccessful()) {
+////                            DocumentSnapshot document = task.getResult();
+////                            if (document.exists()) {
+////                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+////                                shop[0] = createShop(document);
+////                                Log.d(TAG, "DocumentSnapshot data: " + shop[0]);
+////                            } else {
+////                                Log.d(TAG, "No such document");
+////                            }
+////                        } else {
+////                            Log.d(TAG, "get failed with ", task.getException());
+////                        }
+////                    }
+////                }));
+////        Log.d(TAG, shop[0].getShopName());
+////        return shop[0];
+//    }
+//
+//    Shop  getShopDetails(String shopID) throws InterruptedException {
+//        String TAG = "get shop details";
+//        ShopBuilder shopBuilder = new ShopBuilder();
+//        final Shop[] shop = new Shop[1];
+//        shopsReference.document(shopID)
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+//                                shop[0] = createShop(document);
+//                                Log.d(TAG, "DocumentSnapshot data: " + shop[0]);
+//                            } else {
+//                                Log.d(TAG, "No such document");
+//                            }
+//                        } else {
+//                            Log.d(TAG, "get failed with ", task.getException());
+//                        }
+//                    }
+//                });
+//        int i = 1000000000;
+//        while(shop[0]==null) {
+////            Thread.sleep(5 * 1000);
+//            i--;
+//            if(i==0)
+//                break;
+//        }
+////        Log.d(TAG, shop[0].getShopName());
+//        return shop[0];
+//    }
 
     // not verified
     void updateShopDetails(String shopID, Shop shop){
