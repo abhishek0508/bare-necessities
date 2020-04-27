@@ -11,43 +11,40 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:verticalScrollbarPosition="right"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="20dp"
         >
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/ShopList"
+            android:layout_width="227dp"
+            android:layout_height="68dp"
             android:layout_margin="20dp"
-            android:text="shop page test button"
-            tools:layout_editor_absoluteX="107dp"
-            tools:layout_editor_absoluteY="100dp" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="Retailer reg test button"
-            tools:layout_editor_absoluteX="107dp"
-            tools:layout_editor_absoluteY="193dp" />
+            android:backgroundTint="#EFEE89"
+            android:fontFamily="monospace"
+            android:text="Shop List"
+            android:textColor="#5F5235"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.768" />
 
         <Button
             android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="225dp"
+            android:layout_height="74dp"
             android:layout_margin="20dp"
-            android:text="Sign in test button"
-            tools:layout_editor_absoluteX="107dp"
-            tools:layout_editor_absoluteY="193dp" />
-
-        <Button
-            android:id="@+id/ShopList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="Shop List"
-            tools:layout_editor_absoluteX="107dp"
-            tools:layout_editor_absoluteY="193dp" />
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="#EFEE89"
+            android:fontFamily="monospace"
+            android:text="Sign in / Register"
+            android:textColor="#5F5235"
+            app:layout_constraintBottom_toTopOf="@+id/ShopList"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </LinearLayout>
 
