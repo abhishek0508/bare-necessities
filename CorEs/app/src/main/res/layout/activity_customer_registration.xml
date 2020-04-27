@@ -38,7 +38,7 @@
                 android:src="@mipmap/customer_img_default_foreground" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/nameCustomerReg"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="15dp"
@@ -72,7 +72,7 @@
                 tools:layout_editor_absoluteY="310dp" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/mobileNumCustomerReg"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_margin="15dp"
@@ -81,6 +81,15 @@
                 android:inputType="phone"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="476dp" />
+
+            <TextView
+                android:id="@+id/errorMessage"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:text="enter all fields *"
+                android:layout_margin="15dp"
+                android:textColor="#F00"
+                android:visibility="gone"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -96,7 +105,6 @@
 
 
             </RelativeLayout>
-
 
         </LinearLayout>
 

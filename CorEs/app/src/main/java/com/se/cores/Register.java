@@ -33,12 +33,12 @@ public class Register extends AppCompatActivity {
     }
 
     public void openRetailerRegistration() {
-        Intent intent = new Intent(this,RetailerRegistration.class);
-        startActivity(intent);
+        Intent register_intent = new Intent(this,RetailerRegistration.class);
+        startActivity(register_intent);
     }
     public void openCustomerRegistration() {
-        Intent intent = new Intent(this,CustomerRegistration.class);
-        startActivity(intent);
+        Intent register_intent = new Intent(this,CustomerRegistration.class);
+        startActivity(register_intent);
     }
 
 }
