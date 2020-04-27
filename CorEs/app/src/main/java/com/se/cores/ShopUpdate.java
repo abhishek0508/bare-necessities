@@ -1,4 +1,4 @@
-package com.example.screen7;
+package com.se.cores;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -11,13 +11,11 @@ import android.widget.Switch;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.screen7.ui.main.MainFragment;
-
 import java.sql.Time;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class ShopUpdate extends AppCompatActivity {
 
     private Switch Activity_ShopStatus;
     private Button aItemList;
@@ -37,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.activity_shop_update);
 
 // First intent: the switch that takes shop status.
         Activity_ShopStatus = findViewById(R.id.switch_ShopStatus);
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         aItemList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder ListBuilder = new AlertDialog.Builder(MainActivity.this);
+                AlertDialog.Builder ListBuilder = new AlertDialog.Builder(ShopUpdate.this);
                 ListBuilder.setMultiChoiceItems(ListItems, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int position, boolean isChecked) {
@@ -130,10 +128,10 @@ public class MainActivity extends AppCompatActivity {
           finish();
         }
 */
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
-                    .commitNow();
-        }
+//        if (savedInstanceState == null) {
+//            getSupportFragmentManager().beginTransaction()
+//                    .replace(R.id.container, )
+//                    .commitNow();
+//        }
     }
 }
