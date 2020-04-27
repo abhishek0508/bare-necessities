@@ -1,31 +1,52 @@
 package com.se.cores;
 
 public class FeedBack {
-    private boolean status;
-    private Integer itemAvailabilityNo;
-    private Integer itemAvailabilityYes;
+    private String shopID;
+    private boolean trueStatus;
+    private boolean itemAvailability;
 
-    public boolean isStatus() {
-        return status;
+    FeedBack(FeedbackBuilder builder) {
+        this.shopID = builder.shopID;
+        this.itemAvailability = builder.itemAvailability;
+        this.trueStatus = builder.trueStatus;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public String getShopID() {
+        return shopID;
     }
 
-    public Integer getItemAvailabilityNo() {
-        return itemAvailabilityNo;
+    public boolean isItemAvailability() {
+        return itemAvailability;
     }
 
-    public void setItemAvailabilityNo(Integer itemAvailabilityNo) {
-        this.itemAvailabilityNo = itemAvailabilityNo;
+    public boolean isTrueStatus() {
+        return trueStatus;
+    }
+}
+
+class FeedbackBuilder {
+    String shopID;
+    boolean trueStatus;
+    boolean itemAvailability;
+
+    public FeedbackBuilder() {}
+
+    public FeedbackBuilder setShopID(String shopID) {
+        this.shopID = shopID;
+        return this;
     }
 
-    public Integer getItemAvailabilityYes() {
-        return itemAvailabilityYes;
+    public FeedbackBuilder setItemAvailability(boolean itemAvailability) {
+        this.itemAvailability = itemAvailability;
+        return this;
     }
 
-    public void setItemAvailabilityYes(Integer itemAvailabilityYes) {
-        this.itemAvailabilityYes = itemAvailabilityYes;
+    public FeedbackBuilder setTrueStatus(boolean trueStatus) {
+        this.trueStatus = trueStatus;
+        return this;
+    }
+
+    public FeedBack build() {
+        return new FeedBack(this);
     }
 }

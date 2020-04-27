@@ -1,63 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.cardview.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="4dp"
+    tools:context=".ShopList">
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="4dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <TextView
+            android:id="@+id/shopName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="142dp"
+            android:layout_marginTop="11dp"
+            android:text="YOUR SHOP'S NAME"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/shopName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="142dp"
-                android:layout_marginTop="11dp"
-                android:text="@string/shopName" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_launcher_background" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_margin="8dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/ic_launcher_background" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="142dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="130dp"
+            android:text="SHOP'S OPEN TIME" />
 
-            <TextView
-                android:id="@+id/shopOpenTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="43dp"
-                android:layout_marginEnd="96dp"
-                android:text="@string/shopOpenTime" />
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="142dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="124dp"
+            android:text="SHOP'S CLOSE TIME" />
 
-            <TextView
-                android:id="@+id/shopCloseTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="72dp"
-                android:layout_marginEnd="100dp"
-                android:text="@string/shopCloseTime" />
+        <TextView
+            android:layout_width="226dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="142dp"
+            android:layout_marginTop="104dp"
+            android:layout_marginEnd="27dp"
+            android:text="CLICK FOR MORE" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="104dp"
-                android:layout_marginEnd="164dp"
-                android:text="Click for More" />
+        <TextView
+            android:id="@+id/shopOpenTime"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="142dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="30dp"
+            android:text=" text2" />
 
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/shopCloseTime"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="142dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="29dp"
+            android:text="text1 " />
+
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>
