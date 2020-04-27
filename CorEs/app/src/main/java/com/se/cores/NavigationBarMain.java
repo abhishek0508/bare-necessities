@@ -1,10 +1,5 @@
 package com.se.cores;
 
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -12,31 +7,44 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
-import com.example.sefinal.R;
+public class NavigationBarMain<NavigationView> extends AppCompatActivity {
 
-public class MainActivity<NavigationView> extends AppCompatActivity {
-
-    private DrawerLayout dl;
+    AppBarConfiguration appBarConfiguration;
+    private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle t;
-    private NavigationView nv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_activity_main);
 
-        dl = (DrawerLayout)findViewById(R.id.activity_main);
-        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
+        drawerLayout = (DrawerLayout)findViewById(R.id.activity_main);
 
-        dl.addDrawerListener(t);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+        AppBarConfiguration appBarConfiguration =
+                new AppBarConfiguration.Builder(navController.getGraph())
+                        .setDrawerLayout(drawerLayout)
+                        .build();
+
+        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationUI.setupWithNavController((Toolbar) navView, navController);
+
+        /*
+        t = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
+
+        drawerLayout.addDrawerListener(t);
         t.syncState();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         nv = (NavigationView)findViewById(R.id.nv);
-        nv.setNavigationItemNavigationListe(new NavigationView.OnNavigationItemSelectedListener() {
+        nv.setNavigationItemNavigationListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
@@ -58,6 +66,7 @@ public class MainActivity<NavigationView> extends AppCompatActivity {
             }
         });
 
+         */
 
     }
 
