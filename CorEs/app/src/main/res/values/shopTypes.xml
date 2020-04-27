@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="shop_types">
+        <item>Grocery</item>
+        <item>Medical</item>
+        <item>Toiletries</item>
+        <item>Supermarket</item>
+        <item>Vegetables</item>
+        <item>Petrol pump</item>
+        <item>Electronics</item>
+        <item>Hardware</item>
+        <item>Stationery</item>
+        <item>Cosmetics</item>
+    </string-array>
+</resources>

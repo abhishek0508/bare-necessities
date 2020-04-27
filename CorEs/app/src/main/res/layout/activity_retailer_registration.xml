@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RetailerRegistration">
+    <!--
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarRetailerReg"
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    -->
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.017">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/imageRetailerReg"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginBottom="20dp"
+                android:src="@mipmap/shop_img_default_foreground"/>
+
+
+                <EditText
+                    android:id="@+id/editTextRetailerName"
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_margin="15dp"
+                    android:ems="10"
+                    android:hint="@string/retailerName"
+                    android:inputType="textPersonName"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="310dp" />
+
+                <EditText
+                    android:id="@+id/editTextShopName"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_margin="15dp"
+                    android:ems="10"
+                    android:hint="@string/shopName"
+                    android:inputType="textPersonName"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="396dp" />
+
+                <EditText
+                    android:id="@+id/emailRetailerReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_margin="15dp"
+                    android:ems="10"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="310dp" />
+
+                <EditText
+                    android:id="@+id/passwordRetailerReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="62dp"
+                    android:layout_margin="15dp"
+                    android:ems="10"
+                    android:hint="@string/passwordCreate"
+                    android:inputType="textPassword"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="310dp" />
+
+                <EditText
+                    android:id="@+id/editTextRetailerPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_margin="15dp"
+                    android:ems="10"
+                    android:hint="@string/phoneNum"
+                    android:inputType="phone"
+                    tools:layout_editor_absoluteX="55dp"
+                    tools:layout_editor_absoluteY="476dp" />
+
+                <EditText
+                    android:id="@+id/editTextGSTNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_margin="15dp"
+                    android:ems="10"
+                    android:hint="@string/GSTnum"
+                    android:inputType="text"
+                    tools:layout_editor_absoluteX="55dp"
+                    tools:layout_editor_absoluteY="476dp" />
+
+                <TextView
+                    android:id="@+id/textViewShopType"
+                    android:layout_width="206dp"
+                    android:layout_height="37dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/shopType"
+                    android:textSize="20sp"
+                    tools:layout_editor_absoluteX="21dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerShopType"
+                    android:layout_width="match_parent"
+                    android:layout_height="69dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    tools:layout_editor_absoluteX="111dp"
+                    tools:layout_editor_absoluteY="102dp" />
+
+                <TextView
+                    android:id="@+id/textViewShopOpen"
+                    android:layout_width="259dp"
+                    android:layout_height="37dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/shopOpenTime"
+                    android:textSize="20dp"
+                    tools:layout_editor_absoluteX="21dp" />
+
+            <TimePicker
+                android:id="@+id/shopOpenTime"
+                android:timePickerMode="spinner"
+                android:layout_width="match_parent"
+                android:layout_height="98dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:id="@+id/textViewShopClose"
+                    android:layout_width="259dp"
+                    android:layout_height="37dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/shopCloseTime"
+                    android:textSize="20dp"
+                    tools:layout_editor_absoluteX="21dp" />
+
+                <TimePicker
+                    android:id="@+id/shopCloseTime"
+                    android:timePickerMode="spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="206dp"
+                android:layout_height="37dp"
+                android:layout_marginLeft="15dp"
+                android:text="@string/locationView"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@id/mapView"
+                tools:layout_editor_absoluteX="21dp" />
+
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapShopLocationReg"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:layout_editor_absoluteX="6dp"
+                tools:layout_editor_absoluteY="659dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/saveButtonRR"
+                    android:layout_width="127dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/saveButton" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

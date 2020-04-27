@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">corEs</string>
+    <string name="app_name">SEproject</string>
+    <string name="locationView">Select shop location</string>
+    <string name="retailerName">Enter your name</string>
+    <string name="shopName">Enter your shop\'s name</string>
+    <string name="phoneNum">Enter your phone number</string>
+    <string name="shopType">Select shop type</string>
+    <string name="saveButton">Save</string>
+    <string name="shopOpenTime">Select shop opening time</string>
+    <string name="shopCloseTime">Select shop closing time</string>
+    <string name="GSTnum">Enter shop GST number (if available)</string>
+    <string name="email">Enter your email id</string>
+    <string name="passwordCreate">Create a password</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="itemAvailable">Were there any OTHER items unavailable other than those listed?</string>
+    <string name="shopStatusTrue">Was the shop really open/closed as indicated?</string>
+    <string name="giveFeedback">Give Feedback</string>
+    <string name="statusOpen">This shop is currently open</string>
+    <string name="statusClosed">This shop is currently closed</string>
+    <string name="okButton">OK</string>
+    <string name="loginForFeedback">Please login / sign up to give feedback</string>
 </resources>
