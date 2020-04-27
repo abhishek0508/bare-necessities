@@ -34,7 +34,7 @@ public class ShopList extends AppCompatActivity {
     private LocationManager locationManager;
 
     private static List<Shop> data;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

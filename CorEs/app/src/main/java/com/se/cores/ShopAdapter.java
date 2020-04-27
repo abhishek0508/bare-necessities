@@ -7,11 +7,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
 
 public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder> {
     private List<Shop> dataset;
     private OnItemClickListener mListener;
+    StorageReference storageReference;
 
     public interface OnItemClickListener{
         void onItemClick(int position, View v);
@@ -50,6 +54,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
     }
     public ShopAdapter(List<Shop> data) {
         this.dataset = data;
+        storageReference = FirebaseStorage.getInstance().getReferenceFromUrl("gs://cores-13fdb.appspot.com/child.jpg");
     }
 
 
@@ -68,7 +73,9 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         holder.textViewCloseTime.setText(shop.getCloseTime());
         holder.textViewOpenTime.setText(shop.getOpenTime());
         holder.textViewShopName.setText(shop.getShopName());
-        Glide.with(holder.imageViewIcon).load(shop.getImageUrl()).centerCrop().into(holder.imageViewIcon);
+        ImageView imageView = holder.imageViewIcon;
+//        Glide.with(imageView.getContext()).load(storageReference).override(120, 120).into(imageView);
+
     }
 
     @Override
