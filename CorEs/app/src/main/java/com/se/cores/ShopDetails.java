@@ -29,11 +29,11 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
         Intent intent = getIntent();
         shop = (Shop)intent.getSerializableExtra("SHOP");
 
-        shopName =(TextView) findViewById(R.id.shopName);
-        shopOpenCloseTime = (TextView) findViewById(R.id.shopOpenTime);
+        shopName = findViewById(R.id.shopNameTextView);
+        shopOpenCloseTime = findViewById(R.id.shopTimingsTextView);
         shopName.setText(shop.getShopName());
         String textShopOpenCloseTime = "Timings: "+shop.getOpenTime()+" to "+shop.getCloseTime();
-        shopOpenCloseTime.setText(textShopOpenCloseTime)
+        shopOpenCloseTime.setText(textShopOpenCloseTime);
           
         Button feedbackButton = findViewById(R.id.feedbackButton);
 
