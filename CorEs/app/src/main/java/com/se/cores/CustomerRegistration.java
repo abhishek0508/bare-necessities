@@ -60,6 +60,7 @@ public class CustomerRegistration extends AppCompatActivity {
     Bitmap uploadedCustomerImage;
 
     String imageDbURL;
+    static int imageName=0;
 
     private static final int PICK_IMAGE = 1000;
     FirebaseStorage storage;
@@ -118,7 +119,7 @@ public class CustomerRegistration extends AppCompatActivity {
                     customerBuilderObject.setName(name);
                     customerBuilderObject.setEmail(email);
                     customerBuilderObject.setPassword(password);
-                    customerBuilderObject.setPhoneNumber(phoneNumber);
+                    customerBuilderObject   .setPhoneNumber(phoneNumber);
                     customerBuilderObject.setImage_url(imageDbURL);
                     Log.d("URL"," image firstore URL "+imageDbURL);
 
@@ -128,7 +129,7 @@ public class CustomerRegistration extends AppCompatActivity {
                     db.addNewCustomer(customerObject);
 
                     // Go to app home screen
-                    Intent home = new Intent(CustomerRegistration.this, CustomerRegistration.class);  // go to screen 4 + 5 (home, customer logged in)
+                    Intent home = new Intent(CustomerRegistration.this, MainActivity.class);  // go to screen 4 + 5 (home, customer logged in)
                     startActivity(home);
                 }
             }
@@ -182,8 +183,11 @@ public class CustomerRegistration extends AppCompatActivity {
 
     private void uploadImageToFirebase(Uri contentURI)
     {
+        imageName = imageName+1;
+        String name = new StringBuilder().append("profile"+imageName).toString();
+
         StorageReference storageRef = FirebaseStorage.getInstance().getReference(); //storage.getReference();
-        StorageReference fileRef = storageRef.child("profile1.jpg");
+        StorageReference fileRef = storageRef.child(name+".jpg");
         UploadTask uploadTask = fileRef.putFile(contentURI);
         Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override

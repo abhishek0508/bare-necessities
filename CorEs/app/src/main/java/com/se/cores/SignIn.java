@@ -1,5 +1,6 @@
 package com.se.cores;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,12 +12,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 public class SignIn extends AppCompatActivity
 {
     EditText emailId,password;
     private Button login_button;
     LoginBuilder loginBuilderObject;
     Login loginObject;
+
+    FirebaseFirestore db;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,28 +56,47 @@ public class SignIn extends AppCompatActivity
 
                     loginObject=loginBuilderObject.build();
 
-                    DatabaseAdapter db = new DatabaseAdapter();
-                    Boolean validate=db.validateCustomer(loginObject);
-
-                    Log.d("validate","Bool value "+validate);
-                    openHome();
+                    db = FirebaseFirestore.getInstance();
+                    CollectionReference collectionReference = db.collection("customers");
+                    Log.d("email"," "+email);
+                    Log.d("password"," "+pswd);
+                    collectionReference.whereEqualTo("email",loginObject.getEmail()).whereEqualTo("password",loginObject.getPassword())
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if(task.isSuccessful()){
+                                        for (QueryDocumentSnapshot document : task.getResult())
+                                        {
+                                            Log.d("check", "success");
+                                            String userType = "";
+                                            SharedPreferences sp = getSharedPreferences("CoresPref", MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = sp.edit();
+                                            editor.putBoolean("loggedIn", true);    // This should be inside an if condition that checks if email and password match
+                                            editor.putString("userType", userType);     // Whether retailer or customer
+                                            editor.apply();
+                                            openHome();
+                                        }
+                                    }
+                                    emailId.getText().clear();
+                                    password.getText().clear();
+                                    TextView view = (TextView) findViewById(R.id.errorMessage);
+                                    view.setVisibility(View.VISIBLE);
+                                }
+                            });
 
                 }
 
             }
         });
-
-        String userType = "";
-        SharedPreferences sp = getSharedPreferences("CoresPref", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putBoolean("loggedIn", true);    // This should be inside an if condition that checks if email and password match
-        editor.putString("userType", userType);     // Whether retailer or customer
-        editor.apply();
     }
     //open home page
     public void openHome() {
-        Intent home_intent = new Intent(this,Register.class);
+        Intent home_intent = new Intent(this,MainActivity.class);
         startActivity(home_intent);
     }
-
+    public void openSignIn() {
+        Intent intent = new Intent(this,RegisterSignIn.class);
+        startActivity(intent);
+    }
 }
