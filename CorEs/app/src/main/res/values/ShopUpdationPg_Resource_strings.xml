@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Screen 7</string>
+    <string name="_00_00_hrs">00:00 hrs</string>
+    <string name="update_shop_timings">Update Shop Timings</string>
+    <string name="UpdationPg_Text_Back"><![CDATA[<-]]></string>
+    <string name="out_of_stock">Out of Stock</string>
+    <string name="ShopStatus_open">Open</string>
+    <string name="ShopStatus_closed">Closed</string>
+    <string name="Text_CloseTime">Close</string>
+    <string name="shop_status">Shop Status</string>
+    <string name="available_items">Available Items</string>
+    <string name="enter_items_at_your_store">Enter Items at your store</string>
+    <string name="OPEN">OPEN</string>
+    <string name="CLOSED">CLOSED</string>
+    <string name="please_check_item_list_for_essentials_before_entering_items">Please check Item List for essentials before entering items</string>
+    <string name="item_list">Item List</string>
+    <string name="OK">OK</string>
+    <string name="Essentials">Essentials</string>
+    <string-array name= "Categories">
+        <item>Food</item>
+        <item>Dairy</item>
+        <item>Medical</item>
+        <item>Cleaning Supplies</item>
+        <item>Personal Hygiene</item>
+        <item>Hardware</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="Essentials">
+        <item>Rice</item>
+        <item>Flour</item>
+        <item>Pulses</item>
+        <item>Oil</item>
+        <item>Salt</item>
+        <item>Sugar</item>
+        <item>Spices</item>
+        <item>Milk</item>
+        <item>Eggs</item>
+        <item>Butter</item>
+        <item>Ghee</item>
+        <item>Other Milk Products</item>
+        <item>Meat</item>
+        <item>Medicines</item>
+        <item>Soaps and Detergent</item>
+        <item>Surface Cleaners</item>
+        <item>Shampoos</item>
+        <item>Dental Hygiene</item>
+        <item>Diapers</item>
+        <item>Sanitary napkins</item>
+        <item>Tissues</item>
+        <item>Tea</item>
+        <item>Coffee</item>
+        <item>Baby Food</item>
+        <item>Health Supplements</item>
+        <item>Packaged Food and Drink</item>
+        <item>Animal/ Pet Food</item>
+        <item>Fuel</item>
+        <item>Batteries</item>
+    </string-array>
+    <string-array name="AvailableItems"></string-array>
+    <string-array name="UnavailableItems"></string-array>
+</resources>
