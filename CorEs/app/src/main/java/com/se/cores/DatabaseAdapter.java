@@ -1,27 +1,13 @@
 package com.se.cores;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.util.Log;
 import androidx.annotation.NonNull;
-import androidx.annotation.WorkerThread;
-import androidx.core.app.ActivityCompat;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
-import com.google.firebase.FirebaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -32,17 +18,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.koalap.geofirestore.GeoFire;
 import com.koalap.geofirestore.GeoLocation;
-import com.koalap.geofirestore.GeoQuery;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 import java.util.Objects;
-
-import static androidx.core.content.ContextCompat.getSystemService;
-
 
 class DatabaseAdapter {
     private static final String TAG = "Database Adapter";
@@ -104,7 +84,6 @@ class DatabaseAdapter {
                         }
                     }
                 });
-
 
         return validate;
     }
@@ -384,15 +363,10 @@ class DatabaseAdapter {
         getShopDetails(shopID, new MyCallback()  {
             @Override
             public void onCallback(Shop shop1) {
-                //Do what you need to do with your list
-
-
                 Log.d("get shop details", "DocumentSnapshot data: " + shop1.getShopName());
             }
         });
     }
-
-
 
     void getShopDetails(String shopID, MyCallback myCallback){
         String TAG = "get shop details";
@@ -418,7 +392,6 @@ class DatabaseAdapter {
                 });
     }
 
-
 //    async Shop  getShopDetails(String shopID) {
 //        var cityRef;
 //        try{
@@ -428,76 +401,6 @@ class DatabaseAdapter {
 //            // error!
 //        }
 //
-
-//    @WorkerThread
-//    void  getShopDetails(String shopID) throws ExecutionException, InterruptedException {
-//        String TAG = "get shop details";
-//        ShopBuilder shopBuilder = new ShopBuilder();
-//        final Shop[] shop = new Shop[1];
-//        DocumentSnapshot document = Tasks.await(shopsReference.document(shopID).get());
-//        if (document.exists()) {
-//            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//            shop[0] = createShop(document);
-//            Log.d(TAG, "DocumentSnapshot data: " + shop[0]);
-//        } else {
-//            Log.d(TAG, "No such document");
-//        }
-////                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-////                    @Override
-////                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-////                        if (task.isSuccessful()) {
-////                            DocumentSnapshot document = task.getResult();
-////                            if (document.exists()) {
-////                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-////                                shop[0] = createShop(document);
-////                                Log.d(TAG, "DocumentSnapshot data: " + shop[0]);
-////                            } else {
-////                                Log.d(TAG, "No such document");
-////                            }
-////                        } else {
-////                            Log.d(TAG, "get failed with ", task.getException());
-////                        }
-////                    }
-////                }));
-////        Log.d(TAG, shop[0].getShopName());
-////        return shop[0];
-//    }
-//
-//    Shop  getShopDetails(String shopID) throws InterruptedException {
-//        String TAG = "get shop details";
-//        ShopBuilder shopBuilder = new ShopBuilder();
-//        final Shop[] shop = new Shop[1];
-//        shopsReference.document(shopID)
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            DocumentSnapshot document = task.getResult();
-//                            if (document.exists()) {
-//                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//                                shop[0] = createShop(document);
-//                                Log.d(TAG, "DocumentSnapshot data: " + shop[0]);
-//                            } else {
-//                                Log.d(TAG, "No such document");
-//                            }
-//                        } else {
-//                            Log.d(TAG, "get failed with ", task.getException());
-//                        }
-//                    }
-//                });
-//        int i = 1000000000;
-//        while(shop[0]==null) {
-////            Thread.sleep(5 * 1000);
-//            i--;
-//            if(i==0)
-//                break;
-//        }
-////        Log.d(TAG, shop[0].getShopName());
-//        return shop[0];
-//    }
-
-    // not verified
     void updateShopDetails(String shopID, Shop shop){
         String TAG = "update shop details";
         shopsReference.document(shopID)
