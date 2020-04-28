@@ -1,71 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="#FFFFFF"
-android:backgroundTint="#5F5235"
-tools:context=".MainActivity">
-<Button
-    android:id="@+id/button"
-    android:layout_width="225dp"
-    android:layout_height="74dp"
-    android:layout_margin="20dp"
-    android:layout_marginBottom="32dp"
-    android:background="#EFEE89"
-    android:fontFamily="monospace"
-    android:text="shop page test button"
-    android:textColor="#5F5235"
-    app:layout_constraintBottom_toTopOf="@+id/button3"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.51"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="1.0" />
-<Button
-    android:id="@+id/button3"
-    android:layout_width="wrap_content"
-    android:layout_height="80dp"
-    android:layout_margin="20dp"
-    android:layout_marginBottom="32dp"
-    android:backgroundTint="#EFEE89"
-    android:fontFamily="monospace"
-    android:text="Retailer reg test button"
-    android:textColor="#5F5235"
-    app:layout_constraintBottom_toTopOf="@+id/button4"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.505"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="1.0" />
-<Button
-    android:id="@+id/button4"
-    android:layout_width="225dp"
-    android:layout_height="74dp"
-    android:layout_margin="20dp"
-    android:layout_marginBottom="32dp"
-    android:backgroundTint="#EFEE89"
-    android:fontFamily="monospace"
-    android:text="Sign in test button"
-    android:textColor="#5F5235"
-    app:layout_constraintBottom_toTopOf="@+id/ShopList"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.505"
-    app:layout_constraintStart_toStartOf="parent" />
-<Button
-    android:id="@+id/ShopList"
-    android:layout_width="227dp"
-    android:layout_height="68dp"
-    android:layout_margin="20dp"
-    android:backgroundTint="#EFEE89"
-    android:fontFamily="monospace"
-    android:text="Shop List"
-    android:textColor="#5F5235"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.489"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.768" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="#5F5235"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="-16dp">
+
+        <Button
+            android:id="@+id/ShopList"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="110dp"
+
+            android:layout_marginTop="180dp"
+            android:layout_marginEnd="100dp"
+            android:backgroundTint="#EFEE89"
+            android:fontFamily="monospace"
+            android:text="Shop List"
+            android:textColor="#5F5235" />
+
+        <Button
+            android:id="@+id/signIn"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="100dp"
+            android:backgroundTint="#EFEE89"
+            android:fontFamily="monospace"
+            android:text="Sign in / Sign Up"
+            android:textColor="#5F5235" />
+
+        <Button
+            android:id="@+id/shopUpdate"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="#EFEE89"
+            android:fontFamily="monospace"
+            android:text="Shop Update"
+            android:textColor="#5F5235" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

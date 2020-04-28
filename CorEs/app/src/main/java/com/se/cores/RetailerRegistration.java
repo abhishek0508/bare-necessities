@@ -13,9 +13,12 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,6 +37,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PointOfInterest;
+import com.google.firebase.firestore.GeoPoint;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -47,7 +51,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RetailerRegistration extends AppCompatActivity {
+public class RetailerRegistration extends AppCompatActivity implements OnMapReadyCallback {
 
     /**
      * This class defines UI code for the Retailer Registration screen of the app, in which a retailer can enter their personal details and their
@@ -209,8 +213,11 @@ public class RetailerRegistration extends AppCompatActivity {
                 String shopType = currentSelection[0];
                 String openingTime = shopOpenTimePicker.getHour() + ":" + shopOpenTimePicker.getMinute();
                 String closingTime = shopCloseTimePicker.getHour() + ":" + shopCloseTimePicker.getMinute();
-                double shopLatitude = shopCoords[0].latitude;
-                double shopLongitude = shopCoords[0].longitude;
+                GeoPoint loc = findLocation();
+                double shopLatitude = loc.getLatitude();
+                double shopLongitude = loc.getLongitude();
+//                double shopLatitude = shopCoords[0].latitude;
+//                double shopLongitude = shopCoords[0].longitude;
 
                 // TODO: VALIDATE
 
@@ -244,8 +251,8 @@ public class RetailerRegistration extends AppCompatActivity {
 
                 // Go to app home screen
 
-//                Intent home = new Intent(RetailerRegistration.this, RetailerRegistration.class);  // go to screen 4 + 6 (home, retailer logged in)
-//                startActivity(home);
+                Intent home = new Intent(RetailerRegistration.this, MainActivity.class);  // go to screen 4 + 6 (home, retailer logged in)
+                startActivity(home);
             }
         });
     }
@@ -356,6 +363,17 @@ public class RetailerRegistration extends AppCompatActivity {
         shopLocation.onStop();
     }
 
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        GeoPoint loc = findLocation();
+        double shopLatitude = loc.getLatitude();
+        double shopLongitude = loc.getLongitude();
+        Log.d("displaying on the map", shopLatitude + " " +shopLongitude);
+        map.addMarker(new MarkerOptions().position(new LatLng(shopLatitude, shopLongitude)).title("Marker"));
+//        map.setMyLocationEnabled(true);
+    }
+
     @Override
     protected void onPause() {
         shopLocation.onPause();
@@ -374,4 +392,49 @@ public class RetailerRegistration extends AppCompatActivity {
         shopLocation.onLowMemory();
     }
 
+    public GeoPoint findLocation() {
+        String TAG = "get current location";
+        GeoPoint loc = null;
+        Log.d("Find Location", "in find_location");
+        String location_context = Context.LOCATION_SERVICE;
+        LocationManager locationManager = (LocationManager) getSystemService(location_context);
+        List<String> providers = locationManager.getProviders(true);
+        for (String provider : providers) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                Log.d(TAG, "enabled");
+                return null;
+            }
+            locationManager.requestLocationUpdates(provider, 1000, 0,
+                    new LocationListener() {
+
+                        public void onLocationChanged(Location location) {
+                        }
+
+                        public void onProviderDisabled(String provider) {
+                        }
+
+                        public void onProviderEnabled(String provider) {
+                        }
+
+                        public void onStatusChanged(String provider, int status,
+                                                    Bundle extras) {
+                        }
+                    });
+            Location location = locationManager.getLastKnownLocation(provider);
+            if (location != null) {
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
+                loc = new GeoPoint(latitude, longitude);
+                Log.d(TAG, String.valueOf(loc));
+            }
+        }
+        return loc;
+    }
 }

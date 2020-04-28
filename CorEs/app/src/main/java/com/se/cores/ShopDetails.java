@@ -42,7 +42,7 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
     private TextView shopName,shopOpenCloseTime,itemAvailable,itemUnavailable;
     private Button mapButton;
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
-
+    private double latitude, longitude;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,8 +67,9 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
         shopOpenCloseTime.setText(textShopOpenCloseTime);
         itemAvailable = findViewById(R.id.itemsAvailableTextView);
         itemUnavailable = findViewById(R.id.itemsUnavailableTextView);
-
-
+        latitude = shop.getLocationLat();
+        longitude = shop.getLocationLong();
+        Log.d("lat long", latitude + " " + longitude);
         GeoPoint loc = findLocation();
         Log.d(TAG, "here" + (loc));
 
@@ -93,7 +94,7 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
             @Override
             public void onClick(View v) {
 
-                if (sp.getBoolean("loggedIn", false) == true) {
+//                if (sp.getBoolean("loggedIn", false) == true) {
                     feedbackBuilder = new FeedbackBuilder().setShopID("tj0AkwWcvgXH0sgwX7vQ");
 
                     DialogFragment itemFeedback = new FeedbackItemAvailableDialog();
@@ -104,18 +105,18 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
 
                     feedBack = feedbackBuilder.build();
 
-                    try {
-                        db.updateFeedback(feedBack);
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                else {
-                    DialogFragment notLoggedIn = new LoginForFeedbackDialog();
-                    notLoggedIn.show(getSupportFragmentManager(), "notLoggedInForFeedback");
-                }
+//                    try {
+//                        db.updateFeedback(feedBack);
+//                    } catch (ExecutionException e) {
+//                        e.printStackTrace();
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//                else {
+//                    DialogFragment notLoggedIn = new LoginForFeedbackDialog();
+//                    notLoggedIn.show(getSupportFragmentManager(), "notLoggedInForFeedback");
+//                }
             }
         });
 
@@ -185,8 +186,7 @@ public class ShopDetails extends AppCompatActivity implements FeedbackShopStatus
 
     @Override
     public void onMapReady(GoogleMap map) {
-        map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
-
+        map.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title("Marker"));
         map.setMyLocationEnabled(true);
     }
     @Override

@@ -107,10 +107,10 @@ public class ShopUpdate extends AppCompatActivity {
 
 // Shop Time details updation
         Input_OpenTimeUpdate = findViewById(R.id.UpdatedOpenTime);
-        Time Data_OpenTimeUpdate = ((Time) Input_OpenTimeUpdate.getText());
+//        Time Data_OpenTimeUpdate = ((Time) Input_OpenTimeUpdate.getText());
 
         Input_CloseTimeUpdate = findViewById(R.id.UpdatedTIme_Close);
-        Time Data_CloseTimeUpdate = ((Time) Input_CloseTimeUpdate.getText());
+//        Time Data_CloseTimeUpdate = ((Time) Input_CloseTimeUpdate.getText());
 
 
        /* // Database Adapter for Screen 7

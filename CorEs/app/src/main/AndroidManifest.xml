@@ -23,6 +23,7 @@
         <activity android:name=".Shop" />
         <activity android:name=".ShopList" />
         <activity android:name=".CustomerRegistration" />
+        <activity android:name=".ShopUpdate" />
         <activity android:name=".RetailerRegistration" />
         <activity android:name=".MainActivity">
             <intent-filter>
