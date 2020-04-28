@@ -1,19 +1,12 @@
 package com.se.cores;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import android.Manifest;
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import com.google.firebase.firestore.GeoPoint;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -29,24 +22,24 @@ public class MainActivity extends AppCompatActivity {
 
         data = new DatabaseAdapter().getShops();
 
-        button  = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openShop();
-            }
-        });
+//        button  = findViewById(R.id.button);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openShop();
+//            }
+//        });
 
-        Button retailerRegTestButton = findViewById(R.id.button3);
-        retailerRegTestButton.setOnClickListener(new View.OnClickListener() {
+        Button shopUpdateButton = findViewById(R.id.shopUpdate);
+        shopUpdateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent retReg = new Intent(MainActivity.this, RetailerRegistration.class);
-                startActivity(retReg);
+                Intent shopUpdate = new Intent(MainActivity.this, ShopUpdate.class);
+                startActivity(shopUpdate);
             }
         });
 
-        button4=findViewById(R.id.button4);
+        button4=findViewById(R.id.signIn);
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    private void  openShop(){
-        Intent intent = new Intent(MainActivity.this, ShopDetails.class);
-        startActivity(intent);
-    }
+//    private void  openShop(){
+//        Intent intent = new Intent(MainActivity.this, ShopDetails.class);
+//        startActivity(intent);
+//    }
 }
