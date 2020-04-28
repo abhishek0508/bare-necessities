@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SEproject</string>
+    <string name="app_name">BareNecessities</string>
     <string name="locationView">Select shop location</string>
     <string name="retailerName">Enter your name</string>
     <string name="shopName">Enter your shop\'s name</string>
