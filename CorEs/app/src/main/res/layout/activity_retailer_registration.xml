@@ -127,15 +127,17 @@
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="476dp" />
 
-                <TextView
-                    android:id="@+id/textViewShopType"
-                    android:layout_width="206dp"
-                    android:layout_height="37dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:text="@string/shopType"
-                    android:textSize="20sp"
-                    tools:layout_editor_absoluteX="21dp" />
+            <TextView
+                android:id="@+id/textViewShopType"
+                android:layout_width="206dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/shopType"
+                android:textColor="#5F5235"
+                android:textColorHint="#CC5F5235"
+                android:textSize="20sp"
+                tools:layout_editor_absoluteX="21dp" />
 
                 <Spinner
                     android:id="@+id/spinnerShopType"
@@ -147,15 +149,17 @@
                     tools:layout_editor_absoluteX="111dp"
                     tools:layout_editor_absoluteY="102dp" />
 
-                <TextView
-                    android:id="@+id/textViewShopOpen"
-                    android:layout_width="259dp"
-                    android:layout_height="37dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    android:text="@string/shopOpenTime"
-                    android:textSize="20dp"
-                    tools:layout_editor_absoluteX="21dp" />
+            <TextView
+                android:id="@+id/textViewShopOpen"
+                android:layout_width="259dp"
+                android:layout_height="37dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/shopOpenTime"
+                android:textColor="#5F5235"
+                android:textColorHint="#CC5F5235"
+                android:textSize="20dp"
+                tools:layout_editor_absoluteX="21dp" />
 
             <TimePicker
                 android:id="@+id/shopOpenTime"
@@ -166,15 +170,17 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp" />
 
-                <TextView
-                    android:id="@+id/textViewShopClose"
-                    android:layout_width="259dp"
-                    android:layout_height="37dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    android:text="@string/shopCloseTime"
-                    android:textSize="20dp"
-                    tools:layout_editor_absoluteX="21dp" />
+            <TextView
+                android:id="@+id/textViewShopClose"
+                android:layout_width="259dp"
+                android:layout_height="37dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/shopCloseTime"
+                android:textColor="#5F5235"
+                android:textColorHint="#CC5F5235"
+                android:textSize="20dp"
+                tools:layout_editor_absoluteX="21dp" />
 
                 <TimePicker
                     android:id="@+id/shopCloseTime"
@@ -191,6 +197,8 @@
                 android:layout_height="37dp"
                 android:layout_marginLeft="15dp"
                 android:text="@string/locationView"
+                android:textColor="#5F5235"
+                android:textColorHint="#CC5F5235"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toTopOf="@id/mapView"
                 tools:layout_editor_absoluteX="21dp" />
@@ -209,12 +217,17 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <Button
                     android:id="@+id/saveButtonRR"
                     android:layout_width="127dp"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="@string/saveButton" />
+                    android:background="#EFEE89"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="@string/saveButton"
+                    android:textColor="#5F5235"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
