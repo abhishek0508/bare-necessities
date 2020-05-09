@@ -24,9 +24,10 @@
             android:layout_marginTop="180dp"
             android:layout_marginEnd="100dp"
             android:backgroundTint="#EFEE89"
-            android:fontFamily="monospace"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="Shop List"
-            android:textColor="#5F5235" />
+            android:textColor="#5F5235"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/signIn"
@@ -36,9 +37,10 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="100dp"
             android:backgroundTint="#EFEE89"
-            android:fontFamily="monospace"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="Sign in / Sign Up"
-            android:textColor="#5F5235" />
+            android:textColor="#5F5235"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/shopUpdate"
@@ -49,9 +51,10 @@
             android:layout_marginEnd="100dp"
             android:layout_marginBottom="32dp"
             android:backgroundTint="#EFEE89"
-            android:fontFamily="monospace"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="Shop Update"
-            android:textColor="#5F5235" />
+            android:textColor="#5F5235"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
