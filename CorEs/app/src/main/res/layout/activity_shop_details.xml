@@ -47,102 +47,131 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
+                    android:background="#EFEE89"
+                    android:fontFamily="sans-serif-condensed-medium"
                     android:text="Get Directions"
                     android:textAllCaps="false"
-                    android:textSize="11sp"
+                    android:textColor="#5F5235"
+                    android:textColorHint="#CC5F5235"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/shopLocationMapView"
                     app:layout_constraintEnd_toEndOf="@id/shopLocationMapView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/shopNameTextView"
-                android:layout_width="match_parent"
-                android:layout_height="37dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:text="Shop Name"
-                android:textSize="24sp" />
+        <TextView
+            android:id="@+id/shopNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Shop Name"
+            android:textColor="#5F5235"
+            android:textColorHint="#CC5F5235"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/shopStatusTextView"
-                android:layout_width="match_parent"
-                android:layout_height="37dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:text="@string/statusOpen"
-                android:textSize="24sp" />
+        <TextView
+            android:id="@+id/shopStatusTextView"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="@string/statusOpen"
+            android:textColor="#5F5235"
+            android:textColorHint="#CC5F5235"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/shopTimingsTextView"
-                android:layout_width="match_parent"
-                android:layout_height="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:text="Timings : 9:00 a.m. to 5 p.m."
-                android:textSize="18sp" />
+        <TextView
+            android:id="@+id/shopTimingsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Timings : 9:00 a.m. to 5 p.m."
+            android:textColor="#5F5235"
+            android:textColorHint="#CC5F5235"
+            android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/itemsAvailableTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:text="Items available : rice, wheat, fruits, vegetables, bread, dal, soaps"
-                android:textSize="18sp" />
+        <TextView
+            android:id="@+id/itemsAvailableTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Items available: rice, wheat, fruits, vegetables, bread, dal, soaps"
+            android:textColor="#5F5235"
+            android:textColorHint="#CC5F5235"
+            android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/itemsUnavailableTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:text="Items not available : milk"
-                android:textSize="18sp" />
+        <TextView
+            android:id="@+id/itemsUnavailableTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Items not available: milk"
+            android:textColor="#5F5235"
+            android:textColorHint="#CC5F5235"
+            android:textSize="18sp" />
 
-            <RelativeLayout
+        <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                    <Button
-                        android:id="@+id/feedbackButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:layout_centerInParent="true"
-                        android:text="@string/giveFeedback"
-                        />
+                <Button
+                    android:id="@+id/feedbackButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="25dp"
+                    android:background="#EFEE89"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="@string/giveFeedback"
+                    android:textColor="#5F5235"
+                    android:textColorHint="#CC5F5235"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/feedbackItemsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="15dp"
-                android:text="80% people have found the item listing to be reliable"/>
+        <TextView
+            android:id="@+id/feedbackItemsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="80% people have found the item listing to be reliable"
+            android:textColor="#5F5235"
+            android:textColorHint="#CC5F5235" />
 
-            <TextView
-                android:id="@+id/feedbackStatusText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:text="75% people have found the open/closed status to be reliable"/>
+        <TextView
+            android:id="@+id/feedbackStatusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="75% people have found the open/closed status to be reliable"
+            android:textColor="#5F5235" />
 
          </LinearLayout>
 

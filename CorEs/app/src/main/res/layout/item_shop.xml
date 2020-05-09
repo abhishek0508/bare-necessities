@@ -21,8 +21,11 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="142dp"
             android:layout_marginTop="11dp"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="YOUR SHOP'S NAME"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#5F5235"
+            android:textColorHint="#CC5F5235"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -30,9 +33,14 @@
             android:id="@+id/imageView"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:srcCompat="@android:color/holo_orange_light" />
 
         <TextView
             android:id="@+id/textView2"
@@ -43,7 +51,9 @@
             android:layout_marginStart="142dp"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="130dp"
-            android:text="SHOP'S OPEN TIME" />
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="SHOP'S OPEN TIME"
+            android:textColor="#5F5235" />
 
         <TextView
             android:id="@+id/textView1"
@@ -54,7 +64,9 @@
             android:layout_marginStart="142dp"
             android:layout_marginTop="75dp"
             android:layout_marginEnd="124dp"
-            android:text="SHOP'S CLOSE TIME" />
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="SHOP'S CLOSE TIME"
+            android:textColor="#5F5235" />
 
         <TextView
             android:layout_width="226dp"
@@ -62,10 +74,12 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="142dp"
+            android:layout_marginStart="154dp"
             android:layout_marginTop="104dp"
             android:layout_marginEnd="27dp"
-            android:text="CLICK FOR MORE" />
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="CLICK FOR MORE"
+            android:textColor="#5F5235" />
 
         <TextView
             android:id="@+id/shopOpenTime"
@@ -76,7 +90,9 @@
             android:layout_marginStart="142dp"
             android:layout_marginTop="51dp"
             android:layout_marginEnd="30dp"
-            android:text=" text2" />
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text=" text2"
+            android:textColor="#5F5235" />
 
         <TextView
             android:id="@+id/shopCloseTime"
@@ -86,8 +102,10 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="142dp"
             android:layout_marginTop="75dp"
-            android:layout_marginEnd="29dp"
-            android:text="text1 " />
+            android:layout_marginEnd="25dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="text1 "
+            android:textColor="#5F5235" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

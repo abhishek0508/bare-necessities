@@ -42,10 +42,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="15dp"
+                android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="@string/retailerName"
-                android:layout_marginTop="20dp"
                 android:inputType="textPersonName"
+                android:textColor="#5F5235"
+                android:textColorHint="#CC5F5235"
                 tools:layout_editor_absoluteX="53dp"
                 tools:layout_editor_absoluteY="310dp" />
 
@@ -57,6 +59,7 @@
                 android:ems="10"
                 android:hint="@string/email_1"
                 android:inputType="textEmailAddress"
+                android:textColorHint="#CC5F5235"
                 tools:layout_editor_absoluteX="53dp"
                 tools:layout_editor_absoluteY="310dp" />
 
@@ -68,6 +71,8 @@
                 android:ems="10"
                 android:hint="@string/passwordCreate"
                 android:inputType="textPassword"
+                android:textColor="#5F5235"
+                android:textColorHint="#CC5F5235"
                 tools:layout_editor_absoluteX="53dp"
                 tools:layout_editor_absoluteY="310dp" />
 
@@ -79,6 +84,8 @@
                 android:ems="10"
                 android:hint="@string/phoneNum"
                 android:inputType="phone"
+                android:textColor="#5F5235"
+                android:textColorHint="#CC5F5235"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="476dp" />
 
@@ -98,10 +105,14 @@
 
                 <Button
                     android:id="@+id/saveButtonCR"
-                    android:layout_width="127dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="138dp"
+                    android:layout_height="match_parent"
                     android:layout_centerInParent="true"
-                    android:text="@string/saveButton" />
+                    android:background="#EFEE89"
+                    android:text="@string/saveButton"
+                    android:textColor="#5F5235"
+                    android:textColorHint="#5F5235"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
